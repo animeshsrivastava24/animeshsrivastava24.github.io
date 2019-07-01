@@ -10,15 +10,18 @@ description: A Portfolio Page of Animesh Srivastava
 navbar-links:
   About Me: "aboutme"
   Projects:
-    - Beautiful Jekyll: "http://deanattali.com/beautiful-jekyll/"
-    - Learn markdown: "http://www.markdowntutorial.com/"
+    - Smart Eye for Visually Impaired: "#"
+    - Arduino and Processing based Oscilloscope: "#"
+    - Predictive Path Analyzer (PPA): "#"
+    - Intelligent Electronic Voting Machine: "#"
+    - Smart Time Switch - Energy saving using time monitored switch: "#"
   Research Papers:
-    - IEEE PDGC JUIT Conference
-    - Upcoming Conferences
+    - IEEE PDGC JUIT Conference: "#"
+    - Upcoming Conferences: "#"
   Achievements:
-    - KPIT SPARKLE 2018
-    - Texas Instruments
-    - Microsoft Student Partner
+    - KPIT SPARKLE 2018: "#"
+    - Texas Instruments: "#"
+    - Microsoft Student Partner: "#"
 
 # Image to show in the navigation bar - image must be a square (width = height)
 # Remove this parameter if you don't want an image in the navbar
