@@ -38,7 +38,7 @@ avatar: "/img/18767676_1913925205550453_991180602999679079_n.jpg"
 navbar-col: "#2F2FA2"
 navbar-text-col: "#FFFFFF"
 navbar-children-col: "#379683"
-page-col: "#8EE4AF"
+page-col: "#CAFAFE"
 link-col: "#008AFF"
 hover-col: "#0085A1"
 footer-col: "#F5F5F5"
@@ -87,10 +87,6 @@ share-links-active:
   twitter: true
   facebook: true
   linkedin: true
-
-# How to display the link to the website in the footer
-# Remove this if you don't want a link in the footer
-url-pretty: "https://animeshsrivastava24.github.io/"  # eg. "deanattali.com/beautiful-jekyll"
 
 # --- Web Statistics Section --- #
 
