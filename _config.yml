@@ -27,19 +27,19 @@ navbar-links:
     - Texas Instruments: "#"
     - Microsoft Student Partner: "#"
   ArtWork:
-    - Sunflower Couple : "https://www.instagram.com/p/Bymqus_FDyg/"
-    - The Orange is Yellow : "https://www.instagram.com/p/BygIZ59Fwye/"
+    - Sunflower Couple: "https://www.instagram.com/p/Bymqus_FDyg/"
+    - The Orange is Yellow: "https://www.instagram.com/p/BygIZ59Fwye/"
     - Sunflower: "https://www.instagram.com/p/ByeKeh_lmIq/"
     - Missing Pieces: "https://www.instagram.com/p/BxXjV6YlsSB/"
     - Dogs are Love: "https://www.instagram.com/p/BxWQ1solyAw/"
   Music Covers:  
-    - Happier :"https://www.instagram.com/p/Bp3unaolnEm/"
+    - Happier: "https://www.instagram.com/p/Bp3unaolnEm/"
     - Just the way you are: "https://www.instagram.com/p/Bpu5t_yFLja/"
   Poetry:
-    - Poetry 1:"https://www.instagram.com/p/Bnoezjqnj-Z/"
-    - Poetry 1:"https://www.instagram.com/p/BnofAGaH2Ka/"
-    - Poetry 1:"https://www.instagram.com/p/BoQE0hqg92i/"
-    - Poetry 1:"https://www.instagram.com/p/BpAaLxHgu3j/"
+    - Poetry 1: "https://www.instagram.com/p/Bnoezjqnj-Z/"
+    - Poetry 2: "https://www.instagram.com/p/BnofAGaH2Ka/"
+    - Poetry 3: "https://www.instagram.com/p/BoQE0hqg92i/"
+    - Poetry 4: "https://www.instagram.com/p/BpAaLxHgu3j/"
     
 
 # Image to show in the navigation bar - image must be a square (width = height)
