@@ -3,6 +3,7 @@ layout: post
 title: Smart Time Switch - Energy saving using time monitored switch
 image: /img/300px-Embedded_World_2014_Intel_Galileo_01.jpg
 ---
+![](https://img.shields.io/badge/Documentation-In%20Process-brightgreen.svg)
 
 The project presents the development of timed switching system. A general belief in our world regarding devices is that people think that turning off an electrical appliance while it is still plugged in does not consume any power. However, some electrical appliances actually never turn off and these still consume power in the standby mode. 
 
