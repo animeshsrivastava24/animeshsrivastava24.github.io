@@ -4,7 +4,7 @@
 title: Animesh Srivastava
 
 # Short description of your site
-description: A virtual proof that I'm awesome
+description: A Portfolio Page of Animesh Srivastava
 
 # List of links in the navigation bar
 navbar-links:
@@ -14,7 +14,8 @@ navbar-links:
     - Learn markdown: "http://www.markdowntutorial.com/"
   Research Papers:
     - IEEE PDGC JUIT Conference
-  Achievements
+    - Upcoming Conferences
+  Achievements:
     - KPIT SPARKLE 2018
     - Texas Instruments
     - Microsoft Student Partner
@@ -38,8 +39,8 @@ page-col: "#85DCB"
 link-col: "#008AFF"
 hover-col: "#0085A1"
 footer-col: "#F5F5F5"
-footer-text-col: "#777777"
-footer-link-col: "#404040"
+footer-text-col: "#FFFFFF"
+footer-link-col: "#659DBD"
 
 # Alternatively, the navbar, footer, and page background can be set to use background images
 # instead of colour
