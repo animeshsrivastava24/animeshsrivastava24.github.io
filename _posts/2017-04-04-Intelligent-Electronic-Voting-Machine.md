@@ -1,7 +1,6 @@
 ---
 layout: post
 title: Intelligent Electronic Voting Machine
-image: /img/WhatsApp%20Image%202017-04-04%20at%203.52.18%20PM.jpeg
 ---
 ![](https://img.shields.io/badge/Documentation-In%20Process-brightgreen.svg)
 
