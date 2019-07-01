@@ -1,7 +1,7 @@
 # --- General options --- #
 
 # Name of website
-title: Animesh Srivastava
+# title: Animesh Srivastava
 
 # Short description of your site
 description: A Portfolio Page of Animesh Srivastava
@@ -48,7 +48,7 @@ navbar-links:
 
 # If you want to have an image logo in the top-left corner instead of the title text,
 # then specify the following parameter
- title-img: "/img/18767676_1913925205550453_991180602999679079_n.jpg"
+ title-img: /img/18767676_1913925205550453_991180602999679079_n.jpg
 
 # --- Background colour/image options --- #
 
