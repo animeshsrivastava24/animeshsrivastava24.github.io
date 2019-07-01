@@ -9,19 +9,38 @@ description: A Portfolio Page of Animesh Srivastava
 # List of links in the navigation bar
 navbar-links:
   About Me: "aboutme"
+  Internships:
+    - Indian Institute of Technology, Bombay: "#"
+    - Ekalavya IIT-B, 2017: "#"
+    - University of Lille, France: "#"
   Projects:
-    - Smart Eye for Visually Impaired: "#"
-    - Arduino and Processing based Oscilloscope: "#"
-    - Predictive Path Analyzer (PPA): "#"
-    - Intelligent Electronic Voting Machine: "#"
-    - Smart Time Switch - Energy saving using time monitored switch: "#"
+    - Smart Eye for Visually Impaired: "https://animeshsrivastava24.github.io/2019-05-13-Smart-Eye-for-Visually-Impaired/"
+    - Arduino and Processing based Oscilloscope: "https://animeshsrivastava24.github.io/2018-06-15-aposcope/"
+    - Predictive Path Analyzer (PPA): "https://animeshsrivastava24.github.io/2018-02-20-ppa/"
+    - Intelligent Electronic Voting Machine: "https://animeshsrivastava24.github.io/2017-04-04-Intelligent-Electronic-Voting-Machine/"
+    - Smart Time Switch - Energy saving using time monitored switch: "https://animeshsrivastava24.github.io/2016-06-10-Smart-Time-Switch/"
   Research Papers:
-    - IEEE PDGC JUIT Conference: "#"
+    - IEEE PDGC JUIT Conference: "http://ieeexplore.ieee.org/stamp/stamp.jsp?tp=&arnumber=8745974&isnumber=8745714"
     - Upcoming Conferences: "#"
   Achievements:
-    - KPIT SPARKLE 2018: "#"
+    - KPIT SPARKLE 2018: "https://animeshsrivastava24.github.io/2018-02-04-kpit/"
     - Texas Instruments: "#"
     - Microsoft Student Partner: "#"
+  ArtWork:
+    - Sunflower Couple : "https://www.instagram.com/p/Bymqus_FDyg/"
+    - The Orange is Yellow : "https://www.instagram.com/p/BygIZ59Fwye/"
+    - Sunflower: "https://www.instagram.com/p/ByeKeh_lmIq/"
+    - Missing Pieces: "https://www.instagram.com/p/BxXjV6YlsSB/"
+    - Dogs are Love: "https://www.instagram.com/p/BxWQ1solyAw/"
+  Music Covers  
+    - Happier :"https://www.instagram.com/p/Bp3unaolnEm/"
+    - Just the way you are: "https://www.instagram.com/p/Bpu5t_yFLja/"
+  Poetry
+    - Poetry 1:"https://www.instagram.com/p/Bnoezjqnj-Z/"
+    - Poetry 1:"https://www.instagram.com/p/BnofAGaH2Ka/"
+    - Poetry 1:"https://www.instagram.com/p/BoQE0hqg92i/"
+    - Poetry 1:"https://www.instagram.com/p/BpAaLxHgu3j/"
+    
 
 # Image to show in the navigation bar - image must be a square (width = height)
 # Remove this parameter if you don't want an image in the navbar
