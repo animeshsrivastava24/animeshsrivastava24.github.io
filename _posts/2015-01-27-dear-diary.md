@@ -1,6 +1,18 @@
 ---
 layout: post
-title: Dear diary
+title: Predictive Path Analyzer (PPA) \\ An-en-routing and accident prevention self-learning system
+img : /img/avatar-icon.png
 ---
 
-What is it with that Mary girl?  Dragging me to school every day. As if I had a choice.  What you don't hear in those nursery rhymes is that she starves me if I don't go to school with her; it's the only way I can stay alive!  I'm thinking about being adopted by Little Bo Peep, sure I may get lost, but anything is better than being with Mary and those little brats at school (shudder, shudder).
+This project presents a self-learning Predictive Path Analyzer(PPA) system that helps re-route the vehicles causing
+traffic jam on roads, aids priority vehicles in reaching their desired destinations,generates road safety awareness and provides
+real time monitoring to vehicle owners, thereby creating a convenient path for priority vehicle and thus, mitigating jam
+conditions ,delay for emergency vehicles and road accidents.
+
+The proposed solution determines road traffic density using global positioning system and Google map data, and analyze
+the priority vehicles and general vehicles present on the road.A cross platform application is developed that uses an efficient
+path determination algorithm developed using Machine Learning technology which provides alternate routes to users present
+on the road. Also, the path conditions are monitored for crevices and bumps using accelerometer,gyroscope sensors,Internet of
+Things and cloud computing technologies, this helps in prevention of road accidents and reduces delay in reaching destination.
+
+For more information,feel free to contact me at [my mail](animeshsri.nith@gmail.com)
