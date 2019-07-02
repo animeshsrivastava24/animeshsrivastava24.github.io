@@ -10,9 +10,9 @@ description: A Portfolio Page of Animesh Srivastava
 navbar-links:
   About Me: "aboutme"
   Internships:
-    - Indian Institute of Technology, Bombay: "#"
-    - Ekalavya IIT-B, 2017: "#"
-    - University of Lille, France: "#"
+    - Indian Institute of Technology, Bombay: "https://animeshsrivastava24.github.io/2017-05-20-iitb/"
+    - Ekalavya IIT-B, 2017: "https://animeshsrivastava24.github.io/2017-05-20-iitbekalavya/"
+    - University of Lille, France: "https://animeshsrivastava24.github.io/2018-08-20-france"
   Projects:
     - Smart Eye for Visually Impaired: "https://animeshsrivastava24.github.io/2019-05-13-Smart-Eye-for-Visually-Impaired/"
     - Arduino and Processing based Oscilloscope: "https://animeshsrivastava24.github.io/2018-06-15-aposcope/"
