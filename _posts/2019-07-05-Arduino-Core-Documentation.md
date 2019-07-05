@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Subset Generation Problem
+title: Arduino Core Documentation
 ---
 
 # Welcome to the Arduino-Core-Documentation wiki!
