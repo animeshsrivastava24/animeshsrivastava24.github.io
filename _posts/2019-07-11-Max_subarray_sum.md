@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Subset Generation Problem
+title: Calculate the maximum sum of 'k' consecutive elements in the array.
 ---
 
 # This technique shows how a nested for loop in few problems can be converted to single for loop and hence reducing the time complexity.
