@@ -6,398 +6,135 @@
 <title>Animesh Srivastava — Embedded Firmware Engineer</title>
 <meta name="description" content="Embedded firmware engineer building timing-critical RTOS drivers for Snapdragon RF/PHY Layer-1, and the AI agents that debug them.">
 <meta property="og:title" content="Animesh Srivastava — Embedded Firmware Engineer">
-<meta property="og:description" content="Timing-critical RTOS drivers for Snapdragon RF/PHY Layer-1, and the AI agents that debug them.">
+<meta property="og:description" content="Embedded firmware engineer building timing-critical RTOS drivers for Snapdragon RF/PHY Layer-1, and the AI agents that debug them.">
 <meta property="og:type" content="website">
 <meta name="theme-color" content="#F4EEE1">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='6' fill='%231C1A16'/%3E%3Ctext x='32' y='43' font-family='Georgia,serif' font-size='30' text-anchor='middle' fill='%23F4EEE1'%3EAS%3C/text%3E%3Ccircle cx='51' cy='41' r='3.5' fill='%23C9962E'/%3E%3C/svg%3E">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
-<style>
-:root{
-  --paper:#F4EEE1; --paper-2:#EBE2CF;
-  --ink:#1C1A16; --ink-2:#4A4539; --ink-3:#6E6656; --rule:#D3C7AD;
-  --red:#A8352A; --gold:#C9962E; --gold-deep:#8A5E0F; --green:#2E6A4C;
-  --night:#16140F; --night-2:#211E17; --night-rule:#3A342A; --night-text:#EFE7D6; --night-muted:#B5AA92;
-  --f-display:"DM Serif Display", Georgia, "Times New Roman", serif;
-  --f-body:"DM Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
-  --f-mono:"DM Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
-  --wrap:1160px; --measure:680px;
-  --pad:clamp(20px,5vw,48px);
-  --section:clamp(80px,12vw,160px);
-  --ease:cubic-bezier(.2,.7,.1,1);
-}
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
-html.rm{scroll-behavior:auto}
-body{background:var(--paper);color:var(--ink);font:400 17px/1.6 var(--f-body);-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;overflow-x:hidden}
-body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:90;opacity:.07;mix-blend-mode:multiply;
-  background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='180' height='180'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>")}
-img,svg{display:block;max-width:100%}
-a{color:inherit;text-decoration-color:var(--gold-deep);text-decoration-thickness:1px;text-underline-offset:3px}
-a:hover{color:var(--red)}
-:focus-visible{outline:2px solid var(--gold-deep);outline-offset:3px;border-radius:2px}
-.wrap{max-width:var(--wrap);margin:0 auto;padding:0 var(--pad)}
-.mono{font-family:var(--f-mono)}
-.skip{position:absolute;left:-999px;top:8px;z-index:200;background:var(--ink);color:var(--paper);padding:8px 14px}
-.skip:focus{left:8px}
-.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
-
-/* ---------- progress + trace ---------- */
-.progress{position:fixed;top:0;left:0;right:0;height:2px;z-index:70;pointer-events:none}
-.progress span{display:block;height:100%;background:var(--red);transform-origin:left;transform:scaleX(0)}
-.trace{position:fixed;left:0;top:0;width:72px;height:100vh;z-index:40;pointer-events:none;display:none}
-.trace svg{position:absolute;left:12px;top:80px;width:40px;height:calc(100% - 96px);overflow:visible}
-.trace path{fill:none;vector-effect:non-scaling-stroke;stroke-linejoin:round}
-#traceBg{stroke:var(--rule);stroke-width:1}
-#traceFg{stroke:var(--gold);stroke-width:1.6}
-.trace-tip{position:absolute;left:0;top:0;width:0;height:0}
-.trace-tip i{position:absolute;left:-4.5px;top:-4.5px;width:9px;height:9px;border-radius:50%;background:var(--red)}
-.trace-tip i::after{content:"";position:absolute;inset:-5px;border-radius:50%;border:1px solid var(--red);opacity:.5;animation:ping 1.8s var(--ease) infinite}
-.trace-tip b{position:absolute;left:14px;top:-7px;font:500 10px/1 var(--f-mono);color:var(--ink-3);letter-spacing:.04em;white-space:nowrap}
-@keyframes ping{from{transform:scale(.6);opacity:.7}to{transform:scale(1.8);opacity:0}}
-@media (min-width:1320px){.trace{display:block}}
-
-/* ---------- nav ---------- */
-.nav{position:fixed;top:0;left:0;right:0;z-index:60;transition:background .3s,border-color .3s;border-bottom:1px solid transparent}
-.nav.scrolled{background:rgba(244,238,225,.9);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);border-bottom-color:var(--rule)}
-.nav-in{display:flex;align-items:center;gap:32px;height:64px}
-.mark{font:400 26px/1 var(--f-display);text-decoration:none;letter-spacing:-.01em}
-.mark span{color:var(--gold-deep)}
-.nav-links{display:flex;gap:26px;margin-left:auto}
-.nav-links a{font:500 12.5px/1 var(--f-mono);text-transform:uppercase;letter-spacing:.07em;color:var(--ink-2);text-decoration:none;padding:6px 0;border-bottom:1px solid transparent}
-.nav-links a:hover{color:var(--ink)}
-.nav-links a.active{color:var(--red);border-bottom-color:var(--red)}
-.btn{display:inline-flex;align-items:center;gap:10px;font:500 15px/1 var(--f-body);padding:15px 22px;border-radius:2px;border:1px solid var(--ink);background:var(--ink);color:var(--paper);text-decoration:none;cursor:pointer;transition:background .2s,border-color .2s,color .2s,transform .2s}
-.btn:hover{background:var(--red);border-color:var(--red);color:var(--paper)}
-.btn-small{padding:10px 16px;font-size:14px}
-.btn-quiet{background:transparent;color:var(--ink);border-color:transparent;padding-left:4px;padding-right:4px;
-  background-image:linear-gradient(var(--red),var(--red));background-repeat:no-repeat;background-size:0% 1px;background-position:0 85%;transition:background-size .35s var(--ease),color .2s}
-.btn-quiet:hover{background:transparent;background-image:linear-gradient(var(--red),var(--red));background-repeat:no-repeat;background-position:0 85%;background-size:100% 1px;color:var(--red);border-color:transparent}
-.menu-btn{display:none;margin-left:auto;font:500 12.5px/1 var(--f-mono);text-transform:uppercase;letter-spacing:.07em;background:none;border:1px solid var(--ink);color:var(--ink);padding:10px 14px;border-radius:2px;cursor:pointer}
-.menu{position:fixed;inset:64px 0 0 0;z-index:59;background:var(--paper);padding:32px var(--pad);border-top:1px solid var(--rule)}
-.menu[hidden]{display:none}
-.menu a{display:block;font:400 40px/1.25 var(--f-display);text-decoration:none;padding:6px 0;border-bottom:1px solid var(--rule)}
-.menu a span{font:500 12px/1 var(--f-mono);color:var(--red);margin-right:14px;vertical-align:middle}
-@media (max-width:860px){.nav-links,.nav .btn-small{display:none}.menu-btn{display:inline-block}}
-
-/* ---------- shared ---------- */
-.section{padding:var(--section) 0}
-.kicker{display:flex;align-items:center;gap:14px;font:500 12.5px/1.4 var(--f-mono);text-transform:uppercase;letter-spacing:.08em;color:var(--ink-3);margin-bottom:28px}
-.kicker span{color:var(--red)}
-.kicker::after{content:"";flex:1;height:1px;background:var(--rule)}
-.h2{font:400 clamp(36px,5vw,60px)/1.05 var(--f-display);letter-spacing:-.012em;max-width:17ch}
-.h2 em{font-style:italic;color:var(--red)}
-.lede{max-width:var(--measure);color:var(--ink-2);font-size:18px;margin-top:20px}
-.chips{display:flex;flex-wrap:wrap;gap:8px;list-style:none}
-.chips li{font:400 12px/1 var(--f-mono);padding:6px 9px;border:1px solid var(--rule);border-radius:2px;color:var(--ink-2)}
-
-/* reveal states (only when JS runs and motion is allowed) */
-.js:not(.rm) [data-reveal]{opacity:0;transform:translateY(28px);transition:opacity .9s var(--ease),transform .9s var(--ease);transition-delay:calc(var(--d,0ms) + var(--bd,0ms))}
-.js:not(.rm) [data-reveal].in{opacity:1;transform:none}
-
-/* ---------- hero ---------- */
-.hero{position:relative;min-height:100vh;min-height:100svh;display:flex;flex-direction:column;justify-content:flex-end;padding:120px 0 56px;overflow:hidden}
-.hero-wave{position:absolute;left:0;right:0;top:30%;height:clamp(200px,34vh,340px);width:100%;z-index:0;pointer-events:none}
-.hero-wave path{fill:none;stroke-width:1.6;vector-effect:non-scaling-stroke;stroke-linejoin:round}
-#waveI{stroke:var(--gold)}
-#waveQ{stroke:var(--red);opacity:.65}
-.hero-wave line{stroke:var(--rule);stroke-dasharray:3 5;vector-effect:non-scaling-stroke}
-.hero-inner{position:relative;z-index:1;width:100%}
-.eyebrow{font:500 12.5px/1.4 var(--f-mono);text-transform:uppercase;letter-spacing:.09em;color:var(--ink-2);margin-bottom:22px}
-.eyebrow i{width:7px;height:7px;border-radius:50%;background:var(--green);display:inline-block;margin-right:12px;vertical-align:1px;box-shadow:0 0 0 4px rgba(46,106,76,.15)}
-.hero-name{font:400 clamp(64px,12.5vw,184px)/.9 var(--f-display);letter-spacing:-.025em}
-.hero-name .line{display:block;overflow:hidden;padding-bottom:.07em;margin-bottom:-.07em}
-.hero-name .ch{display:inline-block}
-.hero-name .dot{color:var(--red)}
-.js:not(.rm) .hero-name .ch{transform:translateY(105%);transition:transform 1s var(--ease);transition-delay:calc(var(--i) * 32ms + 80ms)}
-.js:not(.rm) body.ready .hero-name .ch{transform:none}
-.hero-row{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,1fr);gap:48px;align-items:end;margin-top:36px}
-.hero-lead{font-size:clamp(19px,1.8vw,23px);line-height:1.45;color:var(--ink-2);max-width:34ch}
-.hero-lead strong{color:var(--ink);font-weight:500}
-.hero-actions{display:flex;gap:18px;flex-wrap:wrap;justify-content:flex-end}
-.readout{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;margin-top:56px;padding-top:20px;border-top:1px solid var(--ink)}
-.readout dt{font:500 11.5px/1.3 var(--f-mono);text-transform:uppercase;letter-spacing:.08em;color:var(--ink-3);margin-bottom:6px}
-.readout dd{font-size:15px;color:var(--ink)}
-.js:not(.rm) .hero-fade{opacity:0;transform:translateY(16px);transition:opacity 1s var(--ease) .75s,transform 1s var(--ease) .75s}
-.js:not(.rm) body.ready .hero-fade{opacity:1;transform:none}
-@media (max-width:860px){
-  .hero-row{grid-template-columns:1fr;gap:28px}
-  .hero-actions{justify-content:flex-start}
-  .readout{grid-template-columns:1fr 1fr;row-gap:18px;margin-top:40px}
-  .hero-wave{top:22%}
-}
-
-/* ---------- impact ---------- */
-.impact{border-top:1px solid var(--ink);border-bottom:1px solid var(--ink)}
-.impact-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:1px;background:var(--rule)}
-.stat{background:var(--paper);padding:34px 22px 30px}
-.stat:first-child{padding-left:0}
-.stat-num{font:400 clamp(44px,5vw,70px)/1 var(--f-display);letter-spacing:-.02em;white-space:nowrap}
-.stat-num small{font-size:.5em;margin-left:2px}
-.stat-label{font-size:14.5px;color:var(--ink-2);margin-top:12px;max-width:19ch;line-height:1.45}
-@media (max-width:960px){.impact-grid{grid-template-columns:1fr 1fr}.stat{padding:28px 18px 26px}.stat:first-child{padding-left:18px}.stat:last-child{grid-column:1/-1}}
-.impact .wrap{padding-left:var(--pad)}
-
-/* ---------- about ---------- */
-.scrub{font:400 clamp(28px,3.6vw,48px)/1.18 var(--f-display);letter-spacing:-.01em;max-width:30em}
-.scrub .w{transition:opacity .35s, color .35s}
-.js:not(.rm) .scrub .w{opacity:.17}
-.js:not(.rm) .scrub .w.on{opacity:1}
-.scrub .hl{color:var(--red)}
-.about-meta{display:grid;grid-template-columns:repeat(3,1fr);gap:32px;margin-top:80px}
-.about-meta div{border-top:1px solid var(--ink);padding-top:16px}
-.about-meta h3{font:500 12.5px/1.4 var(--f-mono);text-transform:uppercase;letter-spacing:.08em;color:var(--red);margin-bottom:10px}
-.about-meta p{font-size:16px;color:var(--ink-2)}
-@media (max-width:860px){.about-meta{grid-template-columns:1fr;gap:24px;margin-top:56px}}
-
-/* ---------- agents (dark, pinned) ---------- */
-.agents{background:var(--night);color:var(--night-text);position:relative}
-.agents .pin{padding:var(--section) 0}
-.agents.pinned .pin{position:sticky;top:0;height:100vh;overflow:hidden;display:flex;align-items:center;padding:0}
-.track{display:flex;flex-direction:column;gap:24px;padding:0 var(--pad);max-width:var(--wrap);margin:0 auto}
-.agents.pinned .track{flex-direction:row;align-items:stretch;gap:32px;width:max-content;max-width:none;margin:0;padding:0 max(var(--pad),calc((100vw - var(--wrap))/2 + 48px));will-change:transform}
-.panel-intro{max-width:520px;display:flex;flex-direction:column;justify-content:center}
-.agents.pinned .panel-intro{width:min(520px,80vw);flex:none;padding-right:24px}
-.agents .kicker{color:var(--night-muted)}
-.agents .kicker span{color:var(--gold)}
-.agents .kicker::after{background:var(--night-rule)}
-.agents .h2{color:var(--night-text)}
-.agents .h2 em{color:var(--gold)}
-.agents .lede{color:var(--night-muted);font-size:17px}
-.hint{font:500 12px/1 var(--f-mono);letter-spacing:.08em;text-transform:uppercase;color:var(--gold);margin-top:36px;display:none}
-.agents.pinned .hint{display:block}
-.agent-card{background:var(--night-2);border:1px solid var(--night-rule);border-radius:4px;padding:28px 28px 26px;display:flex;flex-direction:column}
-.agents.pinned .agent-card{width:min(440px,80vw);flex:none}
-.agent-card header{display:flex;justify-content:space-between;align-items:center;font:500 11.5px/1 var(--f-mono);letter-spacing:.08em;text-transform:uppercase;color:var(--gold);margin-bottom:20px}
-.agent-card header span:last-child{color:var(--night-muted);border:1px solid var(--night-rule);padding:5px 8px;border-radius:2px;letter-spacing:.04em}
-.agent-card .fig{border:1px solid var(--night-rule);border-radius:2px;background:rgba(0,0,0,.18);padding:12px;margin-bottom:22px}
-.agent-card h3{font:400 29px/1.12 var(--f-display);color:var(--night-text);margin-bottom:12px}
-.agent-card p{font-size:16px;color:var(--night-muted);line-height:1.55}
-.agent-card .metric{margin-top:auto;padding-top:20px;border-top:1px solid var(--night-rule);display:flex;align-items:baseline;gap:12px;color:var(--night-muted);font-size:15px}
-.agent-card .metric strong{font:400 46px/1 var(--f-display);color:var(--gold);font-weight:400}
-.agent-card .body{margin-bottom:24px}
-.agents-bar{position:absolute;left:0;right:0;bottom:0;height:2px;background:var(--night-rule);display:none}
-.agents-bar span{display:block;height:100%;background:var(--gold);transform-origin:left;transform:scaleX(var(--ap,0))}
-.agents.pinned .agents-bar{display:block}
-.agent-note{font:400 12px/1.5 var(--f-mono);color:var(--night-muted);margin-top:20px}
-
-/* diagrams */
-.diag{width:100%;height:auto}
-.diag .ln{fill:none;stroke-width:1.5;vector-effect:non-scaling-stroke;stroke-linecap:round}
-.diag text{font:500 9.5px var(--f-mono);letter-spacing:.04em}
-.js:not(.rm) .diag .ln{stroke-dasharray:1;stroke-dashoffset:1;transition:stroke-dashoffset 1.4s var(--ease);transition-delay:var(--dd,0s)}
-.js:not(.rm) .in .diag .ln{stroke-dashoffset:0}
-.js:not(.rm) .diag .pop{opacity:0;transition:opacity .6s;transition-delay:calc(var(--dd,0s) + .5s)}
-.js:not(.rm) .in .diag .pop{opacity:1}
-
-/* ---------- experience ---------- */
-.timeline{position:relative;margin-top:72px;padding-left:40px}
-.tl-rail{position:absolute;left:7px;top:0;bottom:0;width:2px;background:var(--rule)}
-.tl-rail span{display:block;width:100%;height:100%;background:var(--red);transform-origin:top;transform:scaleY(var(--p,0))}
-.role{position:relative;display:grid;grid-template-columns:minmax(220px,290px) 1fr;gap:56px;padding:48px 0;border-top:1px solid var(--rule)}
-.role::before{content:"";position:absolute;left:-38px;top:54px;width:12px;height:12px;border-radius:50%;background:var(--paper);border:2px solid var(--red)}
-.role-head{position:sticky;top:96px;align-self:start}
-.role-dates{font:500 12.5px/1.4 var(--f-mono);letter-spacing:.06em;text-transform:uppercase;color:var(--red);margin-bottom:10px}
-.role h3{font:400 32px/1.1 var(--f-display);letter-spacing:-.01em}
-.role-org{font-size:15.5px;color:var(--ink-2);margin-top:8px}
-.role-tier{font:400 12px/1.5 var(--f-mono);color:var(--ink-3);margin-top:14px}
-.role.small h3{font-size:26px}
-.log{list-style:none;font-size:16px}
-.log li{display:grid;grid-template-columns:104px 66px 1fr;gap:14px;padding:11px 0;border-bottom:1px dashed var(--rule)}
-.log li:first-child{padding-top:2px}
-.log .ts{font:400 12px/1.9 var(--f-mono);color:var(--gold-deep);white-space:pre}
-.log .lt{font:500 11px/2.1 var(--f-mono);text-transform:uppercase;letter-spacing:.06em;color:var(--green)}
-.log .msg{line-height:1.55;color:var(--ink)}
-.log b{font-weight:600;background:linear-gradient(transparent 60%,rgba(201,150,46,.38) 0);padding:0 2px}
-.js:not(.rm) .log li > *{opacity:0;clip-path:inset(0 100% 0 0);transition:clip-path .9s cubic-bezier(.6,0,.2,1),opacity .25s;transition-delay:var(--bd,0ms)}
-.js:not(.rm) .log li > .lt{transition-delay:calc(var(--bd,0ms) + 120ms)}
-.js:not(.rm) .log li > .msg{transition-delay:calc(var(--bd,0ms) + 220ms)}
-.js:not(.rm) .log li.in > *{opacity:1;clip-path:inset(0 0 0 0)}
-@media (max-width:860px){
-  .timeline{padding-left:28px;margin-top:48px}
-  .tl-rail{left:4px}
-  .role{grid-template-columns:1fr;gap:20px;padding:36px 0}
-  .role::before{left:-30px;top:40px}
-  .role-head{position:static}
-  .log li{grid-template-columns:auto 1fr;gap:4px 12px}
-  .log .msg{grid-column:1/-1}
-}
-
-/* ---------- skills / register ---------- */
-.reg{border:1px solid var(--ink);margin:56px 0 0;background:var(--paper)}
-.reg-top{display:flex;justify-content:space-between;align-items:center;gap:16px;padding:14px 18px;border-bottom:1px solid var(--ink);font:500 12.5px/1.3 var(--f-mono);letter-spacing:.05em;text-transform:uppercase;color:var(--ink-2);flex-wrap:wrap}
-.reg-val{font:500 22px/1 var(--f-mono);color:var(--red);letter-spacing:.02em;text-transform:none}
-.fields{display:grid;grid-template-columns:repeat(8,1fr)}
-.fg{border-right:1px solid var(--ink)}
-.fg:last-child{border-right:0}
-.fg-bits{display:grid;grid-template-columns:repeat(4,1fr)}
-.bit{position:relative;height:56px;border-right:1px solid var(--rule);display:flex;align-items:flex-end;justify-content:center;padding-bottom:9px;font:500 17px/1 var(--f-mono);color:var(--ink-3);transition:background .25s,color .25s}
-.bit:last-child{border-right:0}
-.bit sup{position:absolute;top:6px;left:0;right:0;text-align:center;font-size:9.5px;color:var(--ink-3);font-weight:400}
-.bit.on{background:var(--ink);color:var(--paper)}
-.bit.on sup{color:var(--night-muted)}
-.fg-name{display:block;text-align:center;font:500 11.5px/1 var(--f-mono);letter-spacing:.08em;padding:11px 4px;border-top:1px solid var(--ink);color:var(--ink-3);transition:color .25s}
-.fg.on .fg-name{color:var(--red)}
-.reg-caption{font:400 12.5px/1.5 var(--f-mono);color:var(--ink-3);margin-top:12px}
-.regtable{width:100%;border-collapse:collapse;margin-top:48px}
-.regtable th{font:500 11.5px/1 var(--f-mono);text-transform:uppercase;letter-spacing:.08em;color:var(--ink-3);text-align:left;padding:0 14px 12px 0;border-bottom:1px solid var(--ink)}
-.regtable td{padding:16px 14px 16px 0;border-bottom:1px solid var(--rule);vertical-align:top}
-.regtable .c-bits{font:400 13px/1.6 var(--f-mono);color:var(--gold-deep);white-space:nowrap;width:90px}
-.regtable .c-field{font:500 13.5px/1.6 var(--f-mono);white-space:nowrap;width:170px;transition:color .25s}
-.regtable .c-field span{display:block;font:400 13px/1.4 var(--f-body);color:var(--ink-3);white-space:normal}
-.regtable .c-val{font-size:16px;color:var(--ink)}
-.regtable tr.on .c-field{color:var(--red)}
-@media (max-width:860px){
-  .fields{grid-template-columns:repeat(4,1fr)}
-  .fg:nth-child(4){border-right:0}
-  .fg:nth-child(-n+4){border-bottom:1px solid var(--ink)}
-  .bit{height:50px;font-size:15px}
-  .regtable thead{display:none}
-  .regtable tr{display:grid;grid-template-columns:auto 1fr;gap:4px 14px;padding:14px 0;border-bottom:1px solid var(--rule)}
-  .regtable td{border:0;padding:0}
-  .regtable .c-val{grid-column:1/-1}
-  .regtable .c-field span{display:inline;margin-left:6px}
-}
-
-/* ---------- projects ---------- */
-.proj-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:56px}
-.proj{border:1px solid var(--ink);border-radius:4px;background:var(--paper);display:flex;flex-direction:column;transition:transform .3s var(--ease),box-shadow .3s var(--ease)}
-.proj:hover{transform:translate(-3px,-3px);box-shadow:6px 6px 0 var(--ink)}
-.proj-head{display:flex;justify-content:space-between;font:500 12px/1 var(--f-mono);letter-spacing:.04em;padding:13px 16px;border-bottom:1px solid var(--ink)}
-.proj-head span:last-child{color:var(--red)}
-.proj .fig{background:var(--paper-2);border-bottom:1px solid var(--rule);padding:18px 16px}
-.proj-body{padding:22px 20px 24px;display:flex;flex-direction:column;flex:1}
-.proj h3{font:400 25px/1.15 var(--f-display);margin-bottom:10px}
-.proj p{font-size:16px;color:var(--ink-2);margin-bottom:20px}
-.proj .chips{margin-top:auto}
-.more{margin-top:36px;font:500 13px/1 var(--f-mono);text-transform:uppercase;letter-spacing:.07em}
-@media (max-width:960px){.proj-grid{grid-template-columns:1fr}}
-
-/* ---------- recognition ---------- */
-.rec-grid{display:grid;grid-template-columns:5fr 7fr;gap:72px;margin-top:56px;align-items:start}
-.rank{font:400 clamp(80px,8.6vw,132px)/.9 var(--f-display);letter-spacing:-.03em;white-space:nowrap}
-.rank span{color:var(--red)}
-.rank-cap{font-size:17px;color:var(--ink-2);margin-top:18px;max-width:32ch}
-.degrees{list-style:none;margin-top:36px;border-top:1px solid var(--ink)}
-.degrees li{display:grid;grid-template-columns:1fr auto;gap:4px 16px;padding:14px 0;border-bottom:1px solid var(--rule)}
-.degrees strong{font-weight:500}
-.degrees .meta{font:400 12.5px/1.6 var(--f-mono);color:var(--ink-3);text-align:right}
-.degrees .sub{grid-column:1/-1;font-size:14.5px;color:var(--ink-2)}
-.awards{list-style:none;border-top:1px solid var(--ink)}
-.awards li{display:grid;grid-template-columns:72px 1fr;gap:16px;padding:22px 0;border-bottom:1px solid var(--rule)}
-.awards .yr{font:500 13px/1.9 var(--f-mono);color:var(--red)}
-.awards h3{font:400 23px/1.2 var(--f-display)}
-.awards p{font-size:15.5px;color:var(--ink-2);margin-top:4px}
-@media (max-width:860px){.rec-grid{grid-template-columns:1fr;gap:56px}}
-
-/* ---------- publications ---------- */
-.pubs{list-style:none;margin-top:48px;border-top:1px solid var(--ink)}
-.pubs li{display:grid;grid-template-columns:72px 1fr auto;gap:16px 24px;padding:24px 0;border-bottom:1px solid var(--rule);align-items:baseline}
-.pubs .yr{font:500 13px/1 var(--f-mono);color:var(--red)}
-.pubs h3{font:400 italic 22px/1.3 var(--f-display)}
-.pubs p{font-size:14.5px;color:var(--ink-2);margin-top:6px}
-.pubs .cite{display:inline-block;font:500 11px/1 var(--f-mono);letter-spacing:.05em;text-transform:uppercase;color:var(--green);border:1px solid currentColor;padding:4px 6px;border-radius:2px;margin-left:6px;vertical-align:1px}
-.pubs a.doi{font:500 12.5px/1 var(--f-mono);letter-spacing:.06em;text-transform:uppercase;white-space:nowrap}
-.pubs .nodoi{font:400 12px/1 var(--f-mono);color:var(--ink-3)}
-@media (max-width:860px){.pubs li{grid-template-columns:1fr}}
-
-/* ---------- writing ---------- */
-.writing{background:var(--paper-2);border-top:1px solid var(--ink);border-bottom:1px solid var(--ink);overflow:hidden}
-.marquee{white-space:nowrap;margin:0 0 72px;font:400 clamp(44px,7vw,96px)/1.1 var(--f-display);color:transparent;-webkit-text-stroke:1px var(--ink-2)}
-.marquee-track{display:inline-block;will-change:transform}
-.marquee em{font-style:italic;-webkit-text-stroke:0;color:var(--red);padding:0 .3em}
-.write-grid{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:start}
-.handle{font:400 clamp(40px,5.6vw,76px)/1 var(--f-display);letter-spacing:-.02em;word-break:break-word}
-.handle span{color:var(--gold-deep)}
-.write-grid p:not(.handle){font-size:18px;color:var(--ink-2);max-width:46ch}
-.write-links{display:flex;gap:24px;flex-wrap:wrap;margin-top:28px;font:500 13px/1 var(--f-mono);text-transform:uppercase;letter-spacing:.07em}
-.write-grid .chips{margin-top:24px}
-@media (max-width:860px){.write-grid{grid-template-columns:1fr;gap:28px}.marquee{margin-bottom:48px}}
-
-/* ---------- contact ---------- */
-.contact{padding:var(--section) 0 64px}
-.d1{font:400 clamp(56px,10vw,150px)/.95 var(--f-display);letter-spacing:-.03em}
-.d1 em{color:var(--red)}
-.mail-row{display:flex;align-items:center;gap:18px;flex-wrap:wrap;margin-top:48px}
-.mail{font:400 clamp(22px,3vw,36px)/1.2 var(--f-display);word-break:break-all}
-.copy{font:500 12px/1 var(--f-mono);text-transform:uppercase;letter-spacing:.07em;background:none;border:1px solid var(--ink);border-radius:2px;padding:9px 12px;cursor:pointer;color:var(--ink)}
-.copy:hover{background:var(--ink);color:var(--paper)}
-.contact-links{display:flex;gap:28px;flex-wrap:wrap;margin-top:36px;font:500 13px/1 var(--f-mono);text-transform:uppercase;letter-spacing:.07em}
-.foot{margin-top:120px;padding-top:20px;border-top:1px solid var(--ink);display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;font:400 12px/1.5 var(--f-mono);color:var(--ink-3)}
-.foot a{text-decoration:none}
-
-/* ---------- reduced motion ---------- */
-@media (prefers-reduced-motion: reduce){
-  *,*::before,*::after{animation:none!important;transition:none!important}
-}
-</style>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/site.css">
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
 <div class="progress" aria-hidden="true"><span></span></div>
-
 <div class="trace" aria-hidden="true">
   <svg viewBox="0 0 40 1000" preserveAspectRatio="none"><path id="traceBg"/><path id="traceFg"/></svg>
   <div class="trace-tip"><i></i><b>00%</b></div>
 </div>
-
-<header class="nav" id="nav">
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
+<marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#1C1A16"/></marker>
+<marker id="arrR" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#A8352A"/></marker>
+</defs></svg><header class="nav" id="nav">
   <div class="wrap nav-in">
-    <a class="mark" href="#top" aria-label="Animesh Srivastava, back to top">A<span>S</span></a>
-    <nav class="nav-links" aria-label="Sections">
-      <a href="#agents">Agents</a>
-      <a href="#experience">Experience</a>
-      <a href="#skills">Skills</a>
-      <a href="#projects">Projects</a>
-      <a href="#recognition">Recognition</a>
-      <a href="#writing">Writing</a>
-    </nav>
-    <a class="btn btn-small" href="#contact">Contact</a>
-    <button class="menu-btn" aria-expanded="false" aria-controls="menu">Menu</button>
+    <a class="mark" href="index.html" aria-label="Animesh Srivastava, home">A<span>S</span></a>
+    
+    <div class="nav-right">
+      <a class="btn btn-small" href="contact.html">Contact</a>
+      <button class="menu-btn" aria-expanded="false" aria-controls="menu">All pages</button>
+    </div>
   </div>
 </header>
-<nav class="menu" id="menu" hidden aria-label="Menu">
-  <a href="#agents"><span>02</span>Agents</a>
-  <a href="#experience"><span>03</span>Experience</a>
-  <a href="#skills"><span>04</span>Skills</a>
-  <a href="#projects"><span>05</span>Projects</a>
-  <a href="#recognition"><span>06</span>Recognition</a>
-  <a href="#writing"><span>08</span>Writing</a>
-  <a href="#contact"><span>09</span>Contact</a>
-</nav>
-
-<main id="main">
-
-<!-- ================= HERO ================= -->
-<section class="hero" id="top">
-  <svg class="hero-wave" viewBox="0 0 1200 300" preserveAspectRatio="none" aria-hidden="true">
-    <line x1="0" y1="150" x2="1200" y2="150"/>
-    <path id="waveQ"/><path id="waveI"/>
-  </svg>
-  <div class="wrap hero-inner">
-    <p class="eyebrow hero-fade"><i></i>Senior Lead Engineer · Qualcomm · Hyderabad</p>
-    <h1 class="hero-name" aria-label="Animesh Srivastava">
-      <span class="line" aria-hidden="true">Animesh</span>
-      <span class="line" aria-hidden="true">Srivastava<span class="dot">.</span></span>
-    </h1>
-    <div class="hero-row hero-fade">
-      <p class="hero-lead"><strong>Embedded firmware engineer.</strong> 5+ years of timing-critical RTOS drivers for Snapdragon RF/PHY Layer-1, and the AI agents that debug them.</p>
-      <div class="hero-actions">
-        <a class="btn" href="#experience">See the work <span aria-hidden="true">↓</span></a>
-        <a class="btn btn-quiet" href="#contact">Get in touch →</a>
-      </div>
-    </div>
-    <dl class="readout hero-fade">
-      <div><dt>Focus</dt><dd>RF/PHY Layer-1 firmware</dd></div>
-      <div><dt>Core</dt><dd>Embedded C · RTOS · drivers</dd></div>
-      <div><dt>Agents</dt><dd>LangGraph · agentic RAG</dd></div>
-      <div><dt>Platforms</dt><dd>Flagship → entry tier</dd></div>
-    </dl>
+<nav class="menu" id="menu" hidden aria-label="All pages">
+  <div class="menu-grid">
+    <a href="index.html" aria-current="page"><span>00</span>Home</a>
+    <a href="ai-work.html"><svg class="ico" viewBox="0 0 48 48" aria-hidden="true"><rect class="dr" pathLength="1" x="12" y="12" width="24" height="24" rx="2"/><path d="M18 12V7M24 12V7M30 12V7M18 41v-5M24 41v-5M30 41v-5M12 18H7M12 24H7M12 30H7M41 18h-5M41 24h-5M41 30h-5"/><path class="acc" d="M24 17.5l1.8 4.7 4.7 1.8-4.7 1.8L24 30.5l-1.8-4.7-4.7-1.8 4.7-1.8z"/></svg><span>01</span>AI Work</a>
+<a href="agents.html"><svg class="ico" viewBox="0 0 48 48" aria-hidden="true"><path class="dr" pathLength="1" d="M24 14v8M20 29.5L13.5 33M28 29.5L34.5 33"/><circle cx="24" cy="10" r="4"/><circle cx="10" cy="36" r="4"/><circle cx="38" cy="36" r="4"/><circle class="acc" cx="24" cy="26.5" r="5"/></svg><span>02</span>Agents</a>
+<a href="skills.html"><svg class="ico" viewBox="0 0 48 48" aria-hidden="true"><rect x="5" y="15" width="38" height="18" rx="1"/><path d="M14.5 15v18M24 15v18M33.5 15v18"/><rect class="fillacc" x="7.5" y="17.5" width="4.5" height="13"/><rect class="fillacc" x="26.5" y="17.5" width="4.5" height="13"/><path class="dr" pathLength="1" d="M5 40h38"/></svg><span>03</span>Skills</a>
+<a href="mcp.html"><svg class="ico" viewBox="0 0 48 48" aria-hidden="true"><path d="M18 6v9M30 6v9"/><path d="M13 15h22v7a11 11 0 0 1-22 0z"/><path class="dr acc" pathLength="1" d="M24 33v9"/><path class="acc" d="M19 42h10"/></svg><span>04</span>MCP</a>
+<a href="diagrams.html"><svg class="ico" viewBox="0 0 48 48" aria-hidden="true"><rect x="5" y="6" width="15" height="10" rx="1"/><rect x="28" y="6" width="15" height="10" rx="1"/><path class="dr" pathLength="1" d="M12.5 16v6h23v-6M24 22v6"/><path class="acc" d="M24 28l7 7-7 7-7-7z"/></svg><span>05</span>Design Diagrams</a>
+<a href="projects.html"><svg class="ico" viewBox="0 0 48 48" aria-hidden="true"><rect x="6" y="10" width="36" height="28" rx="2"/><rect class="acc" x="19" y="19" width="10" height="10"/><path class="dr" pathLength="1" d="M6 18h6l3 3h4M42 30h-6l-3-3h-4M24 10v9M24 29v9"/><circle cx="11" cy="33" r="1.5"/><circle cx="37" cy="15" r="1.5"/></svg><span>06</span>Projects</a>
+<a href="experience.html"><svg class="ico" viewBox="0 0 48 48" aria-hidden="true"><path class="dr" pathLength="1" d="M12 6v36"/><circle class="fillacc" cx="12" cy="12" r="3.5"/><circle cx="12" cy="24" r="3.5" fill="var(--paper)"/><circle cx="12" cy="36" r="3.5" fill="var(--paper)"/><path d="M20 12h20M20 24h15M20 36h18"/></svg><span>07</span>Experience</a>
+<a href="education.html"><svg class="ico" viewBox="0 0 48 48" aria-hidden="true"><circle cx="24" cy="31" r="10"/><path d="M17 23.5L11 6h8l5 10 5-10h8l-6 17.5"/><path class="acc" d="M24 25.5l1.6 3.3 3.6.5-2.6 2.5.6 3.6L24 33.7l-3.2 1.7.6-3.6-2.6-2.5 3.6-.5z"/></svg><span>08</span>Education & Awards</a>
+<a href="publications.html"><svg class="ico" viewBox="0 0 48 48" aria-hidden="true"><path d="M12 6h18l8 8v28H12z"/><path d="M30 6v8h8"/><path class="acc" d="M17 16h8"/><path class="dr" pathLength="1" d="M17 23h16M17 29h16M17 35h10"/></svg><span>09</span>Publications</a>
+<a href="writing.html"><svg class="ico" viewBox="0 0 48 48" aria-hidden="true"><path d="M24 6l10 16-10 20-10-20z"/><path class="acc" d="M24 24.5V42"/><circle cx="24" cy="22" r="2.5"/><path class="dr" pathLength="1" d="M6 44h36"/></svg><span>10</span>Writing</a>
+<a href="contact.html"><svg class="ico" viewBox="0 0 48 48" aria-hidden="true"><rect x="6" y="12" width="36" height="25" rx="2"/><path class="dr acc" pathLength="1" d="M6 14l18 13 18-13"/></svg><span>11</span>Contact</a>
   </div>
+</nav>
+<main id="main">
+<section class="home-hero" id="top">
+  <div class="wrap home-grid">
+    <div class="who">
+      <p class="eyebrow"><i></i>Senior Lead Engineer · Qualcomm</p>
+      <h1 class="who-name">Animesh Srivastava<span>.</span></h1>
+      <p class="who-lead"><strong>Embedded firmware engineer.</strong> 5+ years of timing-critical RTOS drivers for Snapdragon RF/PHY Layer-1, and the AI agents that debug them.</p>
+      <ul class="who-meta">
+        <li><span>Based in</span><span>Hyderabad, India</span></li>
+        <li><span>Focus</span><span>RF/PHY Layer-1 firmware</span></li>
+        <li><span>Also</span><span>LangGraph agents · MCP</span></li>
+        <li><span>Education</span><span>NIT Hamirpur · Rank 1</span></li>
+      </ul>
+      <p class="who-links"><a href="https://www.linkedin.com/in/animeshsrivastava">LinkedIn ↗</a><a href="https://github.com/animeshsrivastava24">GitHub ↗</a><a href="contact.html">Email →</a></p>
+    </div>
+    <nav class="tiles-wrap" aria-label="Pages">
+      <p class="tiles-head"><span>Index</span><span>11 pages</span></p>
+      <div class="tiles">
+        <a class="tile" href="ai-work.html">
+          <span class="tile-top"><svg class="ico" viewBox="0 0 48 48" aria-hidden="true"><rect class="dr" pathLength="1" x="12" y="12" width="24" height="24" rx="2"/><path d="M18 12V7M24 12V7M30 12V7M18 41v-5M24 41v-5M30 41v-5M12 18H7M12 24H7M12 30H7M41 18h-5M41 24h-5M41 30h-5"/><path class="acc" d="M24 17.5l1.8 4.7 4.7 1.8-4.7 1.8L24 30.5l-1.8-4.7-4.7-1.8 4.7-1.8z"/></svg><span class="num">01</span></span>
+          <span><span class="lbl">AI Work</span><span class="cap">16× faster debug</span></span>
+          <span class="go" aria-hidden="true">↗</span>
+        </a>
+<a class="tile" href="agents.html">
+          <span class="tile-top"><svg class="ico" viewBox="0 0 48 48" aria-hidden="true"><path class="dr" pathLength="1" d="M24 14v8M20 29.5L13.5 33M28 29.5L34.5 33"/><circle cx="24" cy="10" r="4"/><circle cx="10" cy="36" r="4"/><circle cx="38" cy="36" r="4"/><circle class="acc" cx="24" cy="26.5" r="5"/></svg><span class="num">02</span></span>
+          <span><span class="lbl">Agents</span><span class="cap">3 debug agents</span></span>
+          <span class="go" aria-hidden="true">↗</span>
+        </a>
+<a class="tile" href="skills.html">
+          <span class="tile-top"><svg class="ico" viewBox="0 0 48 48" aria-hidden="true"><rect x="5" y="15" width="38" height="18" rx="1"/><path d="M14.5 15v18M24 15v18M33.5 15v18"/><rect class="fillacc" x="7.5" y="17.5" width="4.5" height="13"/><rect class="fillacc" x="26.5" y="17.5" width="4.5" height="13"/><path class="dr" pathLength="1" d="M5 40h38"/></svg><span class="num">03</span></span>
+          <span><span class="lbl">Skills</span><span class="cap">32-bit register map</span></span>
+          <span class="go" aria-hidden="true">↗</span>
+        </a>
+<a class="tile" href="mcp.html">
+          <span class="tile-top"><svg class="ico" viewBox="0 0 48 48" aria-hidden="true"><path d="M18 6v9M30 6v9"/><path d="M13 15h22v7a11 11 0 0 1-22 0z"/><path class="dr acc" pathLength="1" d="M24 33v9"/><path class="acc" d="M19 42h10"/></svg><span class="num">04</span></span>
+          <span><span class="lbl">MCP</span><span class="cap">2 servers in progress</span></span>
+          <span class="go" aria-hidden="true">↗</span>
+        </a>
+<a class="tile" href="diagrams.html">
+          <span class="tile-top"><svg class="ico" viewBox="0 0 48 48" aria-hidden="true"><rect x="5" y="6" width="15" height="10" rx="1"/><rect x="28" y="6" width="15" height="10" rx="1"/><path class="dr" pathLength="1" d="M12.5 16v6h23v-6M24 22v6"/><path class="acc" d="M24 28l7 7-7 7-7-7z"/></svg><span class="num">05</span></span>
+          <span><span class="lbl">Design Diagrams</span><span class="cap">7 figures</span></span>
+          <span class="go" aria-hidden="true">↗</span>
+        </a>
+<a class="tile" href="projects.html">
+          <span class="tile-top"><svg class="ico" viewBox="0 0 48 48" aria-hidden="true"><rect x="6" y="10" width="36" height="28" rx="2"/><rect class="acc" x="19" y="19" width="10" height="10"/><path class="dr" pathLength="1" d="M6 18h6l3 3h4M42 30h-6l-3-3h-4M24 10v9M24 29v9"/><circle cx="11" cy="33" r="1.5"/><circle cx="37" cy="15" r="1.5"/></svg><span class="num">06</span></span>
+          <span><span class="lbl">Projects</span><span class="cap">3 built · 5 planned</span></span>
+          <span class="go" aria-hidden="true">↗</span>
+        </a>
+<a class="tile" href="experience.html">
+          <span class="tile-top"><svg class="ico" viewBox="0 0 48 48" aria-hidden="true"><path class="dr" pathLength="1" d="M12 6v36"/><circle class="fillacc" cx="12" cy="12" r="3.5"/><circle cx="12" cy="24" r="3.5" fill="var(--paper)"/><circle cx="12" cy="36" r="3.5" fill="var(--paper)"/><path d="M20 12h20M20 24h15M20 36h18"/></svg><span class="num">07</span></span>
+          <span><span class="lbl">Experience</span><span class="cap">Qualcomm since 2020</span></span>
+          <span class="go" aria-hidden="true">↗</span>
+        </a>
+<a class="tile" href="education.html">
+          <span class="tile-top"><svg class="ico" viewBox="0 0 48 48" aria-hidden="true"><circle cx="24" cy="31" r="10"/><path d="M17 23.5L11 6h8l5 10 5-10h8l-6 17.5"/><path class="acc" d="M24 25.5l1.6 3.3 3.6.5-2.6 2.5.6 3.6L24 33.7l-3.2 1.7.6-3.6-2.6-2.5 3.6-.5z"/></svg><span class="num">08</span></span>
+          <span><span class="lbl">Education & Awards</span><span class="cap">Rank 1 · 2 gold medals</span></span>
+          <span class="go" aria-hidden="true">↗</span>
+        </a>
+<a class="tile" href="publications.html">
+          <span class="tile-top"><svg class="ico" viewBox="0 0 48 48" aria-hidden="true"><path d="M12 6h18l8 8v28H12z"/><path d="M30 6v8h8"/><path class="acc" d="M17 16h8"/><path class="dr" pathLength="1" d="M17 23h16M17 29h16M17 35h10"/></svg><span class="num">09</span></span>
+          <span><span class="lbl">Publications</span><span class="cap">4 papers</span></span>
+          <span class="go" aria-hidden="true">↗</span>
+        </a>
+<a class="tile" href="writing.html">
+          <span class="tile-top"><svg class="ico" viewBox="0 0 48 48" aria-hidden="true"><path d="M24 6l10 16-10 20-10-20z"/><path class="acc" d="M24 24.5V42"/><circle cx="24" cy="22" r="2.5"/><path class="dr" pathLength="1" d="M6 44h36"/></svg><span class="num">10</span></span>
+          <span><span class="lbl">Writing</span><span class="cap">@thestackpointer</span></span>
+          <span class="go" aria-hidden="true">↗</span>
+        </a>
+<a class="tile" href="contact.html">
+          <span class="tile-top"><svg class="ico" viewBox="0 0 48 48" aria-hidden="true"><rect x="6" y="12" width="36" height="25" rx="2"/><path class="dr acc" pathLength="1" d="M6 14l18 13 18-13"/></svg><span class="num">11</span></span>
+          <span><span class="lbl">Contact</span><span class="cap">Email · LinkedIn · GitHub</span></span>
+          <span class="go" aria-hidden="true">↗</span>
+        </a>
+<div class="tile signal" aria-hidden="true">
+          <svg data-wave viewBox="0 0 300 56" preserveAspectRatio="none"><path class="wI"/></svg>
+          <p><b>Signal locked.</b>Pick a page to start.</p>
+        </div>
+      </div>
+    </nav>
+  </div>
+  <svg class="home-wave" data-wave viewBox="0 0 1200 110" preserveAspectRatio="none" aria-hidden="true">
+    <line x1="0" y1="55" x2="1200" y2="55"/><path class="wQ"/><path class="wI"/>
+  </svg>
+  <p class="home-cue"><span class="wrap" style="display:block">Scroll for the summary ↓</span></p>
 </section>
 
-<!-- ================= IMPACT ================= -->
 <section class="impact" aria-label="Impact in numbers">
   <div class="wrap impact-grid" data-stagger>
     <div class="stat" data-reveal><p class="stat-num"><span data-count="16">16</span>×</p><p class="stat-label">faster RFFE conflict debug with an agentic RAG debugger</p></div>
@@ -408,10 +145,9 @@ a:hover{color:var(--red)}
   </div>
 </section>
 
-<!-- ================= ABOUT ================= -->
 <section class="section about" id="about">
   <div class="wrap">
-    <p class="kicker"><span>01</span>Summary</p>
+    <p class="kicker"><span>00</span>Summary</p>
     <p class="scrub" data-scrub>I build timing-critical, RTOS-based RF/PHY Layer-1 drivers for Snapdragon modem SoCs, across flagship, mid-tier and entry-tier platforms. My work runs from pre-silicon validation through post-silicon bring-up and field debug. I also build the <span class="hl">AI agents that debug that firmware</span>, with LangGraph, agentic RAG and multi-agent systems that automate root-cause analysis.</p>
     <div class="about-meta" data-stagger>
       <div data-reveal><h3>Pre-silicon</h3><p>A subframe-timed L1 emulation harness that reproduces field scheduling behaviour (~90% match) and catches real-time regressions before silicon.</p></div>
@@ -421,628 +157,15 @@ a:hover{color:var(--red)}
   </div>
 </section>
 
-<!-- ================= AGENTS ================= -->
-<section class="agents" id="agents" aria-label="AI debug agents">
-  <div class="pin">
-    <div class="track">
-      <div class="panel-intro" data-reveal>
-        <p class="kicker"><span>02</span>AI debug agents</p>
-        <h2 class="h2">Agents that read the modem logs, so engineers <em>start at the root cause.</em></h2>
-        <p class="lede">Built at Qualcomm with LangGraph and in-house tools. They are internal systems, so the work is described here but the code is not public.</p>
-        <p class="hint">Keep scrolling →</p>
-      </div>
-
-      <article class="agent-card">
-        <header><span>Agent 01</span><span>LangGraph</span></header>
-        <div class="fig">
-          <svg class="diag" viewBox="0 0 320 150" aria-hidden="true">
-            <g fill="#B5AA92"><text x="4" y="38">T0</text><text x="4" y="78">T1</text><text x="4" y="118">T2</text></g>
-            <g stroke="#3A342A"><line class="ln" pathLength="1" x1="30" y1="35" x2="314" y2="35"/><line class="ln" pathLength="1" x1="30" y1="75" x2="314" y2="75" style="--dd:.1s"/><line class="ln" pathLength="1" x1="30" y1="115" x2="314" y2="115" style="--dd:.2s"/></g>
-            <g class="pop" fill="rgba(201,150,46,.22)" stroke="#C9962E" stroke-width="1">
-              <rect x="50" y="28" width="44" height="14"/><rect x="146" y="28" width="32" height="14"/><rect x="238" y="28" width="52" height="14"/>
-              <rect x="96" y="68" width="52" height="14"/><rect x="196" y="68" width="34" height="14"/>
-              <rect x="120" y="108" width="40" height="14"/>
-            </g>
-            <g class="pop" fill="rgba(168,53,42,.3)" stroke="#E0705F" stroke-width="1" style="--dd:.4s"><rect x="236" y="108" width="34" height="14"/></g>
-            <g stroke="#C9962E"><path class="ln" pathLength="1" d="M94 42 C100 55 100 60 104 68" style="--dd:.5s"/><path class="ln" pathLength="1" d="M148 82 C140 95 138 100 140 108" style="--dd:.6s"/><path class="ln" pathLength="1" d="M178 42 C190 55 196 60 204 68" style="--dd:.7s"/></g>
-            <g stroke="#E0705F"><path class="ln" pathLength="1" d="M230 82 C236 95 240 100 246 108" style="--dd:.9s;stroke-dasharray:1"/></g>
-            <text class="pop" x="276" y="104" fill="#E0705F" style="--dd:1s">RACE</text>
-            <text class="pop" x="30" y="146" fill="#B5AA92" style="--dd:1s">producer → consumer, lock-free</text>
-          </svg>
-        </div>
-        <div class="body">
-          <h3>Cross-thread timeline reconstruction</h3>
-          <p>Rebuilds timelines across firmware threads and maps lock-free producer–consumer dependencies to pinpoint the race conditions behind late-surfacing modem crashes.</p>
-        </div>
-        <p class="metric"><strong>3–4×</strong> faster root-cause analysis</p>
-      </article>
-
-      <article class="agent-card">
-        <header><span>Agent 02</span><span>Agentic RAG</span></header>
-        <div class="fig">
-          <svg class="diag" viewBox="0 0 320 150" aria-hidden="true">
-            <g stroke="#3A342A">
-              <path class="ln" pathLength="1" d="M40 75 L130 38"/><path class="ln" pathLength="1" d="M40 75 L130 112" style="--dd:.1s"/>
-              <path class="ln" pathLength="1" d="M130 38 L228 30" style="--dd:.25s"/><path class="ln" pathLength="1" d="M130 38 L228 75" style="--dd:.3s"/>
-              <path class="ln" pathLength="1" d="M130 112 L228 120" style="--dd:.35s"/><path class="ln" pathLength="1" d="M228 30 L294 75" style="--dd:.5s"/>
-              <path class="ln" pathLength="1" d="M228 120 L294 75" style="--dd:.55s"/>
-            </g>
-            <path class="ln" pathLength="1" d="M228 75 L228 120" stroke="#E0705F" style="--dd:.7s"/>
-            <g class="pop" fill="#211E17" stroke="#C9962E" stroke-width="1.5">
-              <circle cx="40" cy="75" r="7"/><circle cx="130" cy="38" r="6"/><circle cx="130" cy="112" r="6"/>
-              <circle cx="228" cy="30" r="6"/><circle cx="228" cy="75" r="6"/><circle cx="228" cy="120" r="6"/><circle cx="294" cy="75" r="7"/>
-            </g>
-            <g class="pop" stroke="#E0705F" stroke-width="2" style="--dd:.9s"><path d="M240 92 l10 10 M250 92 l-10 10"/></g>
-            <g class="pop" fill="#B5AA92" style="--dd:.6s">
-              <text x="8" y="100">BANDS</text><text x="110" y="22">3GPP</text><text x="110" y="136">REL</text>
-              <text x="246" y="26">RFFE</text><text x="256" y="100" fill="#E0705F">CONFLICT</text><text x="274" y="58">OK?</text>
-            </g>
-          </svg>
-        </div>
-        <div class="body">
-          <h3>RFFE conflict debugger</h3>
-          <p>Validates band combinations against 3GPP, detects cross-release regressions, and flags physical and logical RFFE resources that cannot work together.</p>
-        </div>
-        <p class="metric"><strong>16×</strong> faster debug</p>
-      </article>
-
-      <article class="agent-card">
-        <header><span>Agent 03</span><span>Multi-agent</span></header>
-        <div class="fig">
-          <svg class="diag" viewBox="0 0 320 150" aria-hidden="true">
-            <g stroke="#3A342A">
-              <path class="ln" pathLength="1" d="M70 75 C100 75 100 30 128 30"/><path class="ln" pathLength="1" d="M70 75 L128 75" style="--dd:.1s"/><path class="ln" pathLength="1" d="M70 75 C100 75 100 120 128 120" style="--dd:.2s"/>
-              <path class="ln" pathLength="1" d="M198 30 C226 30 226 75 248 75" style="--dd:.5s"/><path class="ln" pathLength="1" d="M198 75 L248 75" style="--dd:.55s"/><path class="ln" pathLength="1" d="M198 120 C226 120 226 75 248 75" style="--dd:.6s"/>
-            </g>
-            <g class="pop" fill="#211E17" stroke="#C9962E" stroke-width="1.2">
-              <rect x="8" y="60" width="62" height="30" rx="2"/>
-              <rect x="128" y="18" width="70" height="24" rx="2"/><rect x="128" y="63" width="70" height="24" rx="2"/><rect x="128" y="108" width="70" height="24" rx="2"/>
-            </g>
-            <rect class="pop" x="248" y="60" width="64" height="30" rx="2" fill="rgba(201,150,46,.22)" stroke="#C9962E" stroke-width="1.2" style="--dd:.8s"/>
-            <g class="pop" fill="#EFE7D6">
-              <text x="19" y="79">CRASH</text><text x="140" y="34">MATCH A</text><text x="140" y="79">MATCH B</text><text x="140" y="124">MATCH C</text>
-            </g>
-            <text class="pop" x="262" y="79" fill="#EFE7D6" style="--dd:.8s">CAUSE</text>
-          </svg>
-        </div>
-        <div class="body">
-          <h3>OEM field-issue triage</h3>
-          <p>Extracts modem crash signatures, matches them against known issues in parallel, and recommends the root cause and next debug steps.</p>
-        </div>
-        <p class="metric"><strong>~2.7×</strong> faster triage</p>
-      </article>
-    </div>
-  </div>
-  <div class="agents-bar" aria-hidden="true"><span></span></div>
-</section>
-
-<!-- ================= EXPERIENCE ================= -->
-<section class="section" id="experience">
-  <div class="wrap">
-    <p class="kicker"><span>03</span>Experience</p>
-    <h2 class="h2" data-reveal>From register tables to <em>race conditions.</em></h2>
-    <p class="lede" data-reveal>On Snapdragon modem firmware at Qualcomm since 2020, read here as a boot log.</p>
-
-    <div class="timeline" id="timeline">
-      <div class="tl-rail" aria-hidden="true"><span></span></div>
-
-      <article class="role">
-        <div class="role-head">
-          <p class="role-dates">Dec 2024 — Present</p>
-          <h3>Senior Lead Engineer</h3>
-          <p class="role-org">Qualcomm India · Hyderabad</p>
-          <p class="role-tier">premium · mid · entry tier</p>
-        </div>
-        <ol class="log">
-          <li><span class="lt">agent</span><span class="msg">Built a LangGraph agent that rebuilds cross-thread timelines, mapping lock-free producer–consumer dependencies across firmware threads to pinpoint race conditions behind late-surfacing modem crashes: <b>3–4× faster RCA</b>.</span></li>
-          <li><span class="lt">agent</span><span class="msg">Built an agentic RAG debugger for RFFE conflict failures that validates band combinations against 3GPP, detects cross-release regressions and flags incompatible physical/logical RFFE resources: <b>16× faster debug</b>.</span></li>
-          <li><span class="lt">agent</span><span class="msg">Built a multi-agent OEM field-issue triage system that extracts modem crash signatures, matches known issues in parallel and recommends root cause and next debug steps: <b>~2.7× faster triage</b>.</span></li>
-          <li><span class="lt">sim</span><span class="msg">Designed a subframe-timed L1 emulation harness that reproduces field-level scheduling behaviour (<b>~90% match</b>), catching real-time performance regressions pre-silicon.</span></li>
-          <li><span class="lt">drv</span><span class="msg">Extended memory-mapped RFFE/SDR register drivers and low-level PHY control paths to bring up <b>LTE 450 MHz</b> support for Aramco Digital.</span></li>
-          <li><span class="lt">rtos</span><span class="msg">Re-architected RTOS task scheduling on premium-tier configurations, cutting transceiver latency by <b>25%</b> so subframe-level deadlines are hit consistently.</span></li>
-          <li><span class="lt">pwr</span><span class="msg">Profiled RFFE register-level power states (Sleep/Wake/DRx/CDRx) and resequenced driver register writes and interrupt timing: <b>~25% shorter active window</b>, 5–8% lower current draw.</span></li>
-        </ol>
-      </article>
-
-      <article class="role">
-        <div class="role-head">
-          <p class="role-dates">Dec 2022 — Dec 2024</p>
-          <h3>Senior Engineer</h3>
-          <p class="role-org">Qualcomm India · Hyderabad</p>
-          <p class="role-tier">flagship · mid · entry tier</p>
-        </div>
-        <ol class="log">
-          <li><span class="lt">cal</span><span class="msg">Improved receiver link reliability by <b>up to 3 dB SNR</b> by integrating LO/mixer sideband mitigation into RF calibration flows.</span></li>
-          <li><span class="lt">phy</span><span class="msg">Enhanced in-band receiver sensitivity by <b>2–4 dB</b> by architecting a PHY-layer interference-mitigation framework that suppresses Tx leakage during high-power operation.</span></li>
-          <li><span class="lt">coex</span><span class="msg">Converted hardware register-level RFFE coexistence requirements from RF card schematics into a driver-layer implementation for DSDS/DSDA on mid-tier and entry-tier SKUs.</span></li>
-          <li><span class="lt">drv</span><span class="msg">Characterized Tx-leakage interference behaviour at the driver level and nullified it at runtime on flagship configurations (HD/IMD mitigation).</span></li>
-          <li><span class="lt">debug</span><span class="msg">Root-caused RF/PHY firmware defects from field logs (QXDM/QCAT) across entry to premium tiers, down to register state and timing, and shipped targeted driver fixes.</span></li>
-          <li><span class="lt">flash</span><span class="msg">Reduced calibration parameter overhead on entry-tier SKUs by sharing register tables with mid-tier configurations, keeping cost-constrained platforms within flash budget.</span></li>
-        </ol>
-      </article>
-
-      <article class="role">
-        <div class="role-head">
-          <p class="role-dates">Dec 2020 — Dec 2022</p>
-          <h3>Engineer</h3>
-          <p class="role-org">Qualcomm India · Hyderabad</p>
-          <p class="role-tier">flagship · mid · entry tier</p>
-        </div>
-        <ol class="log">
-          <li><span class="lt">mem</span><span class="msg">Cut calibration compute cycles by <b>20%</b> and static memory footprint by <b>30%</b> through shared register-table grouping across flagship, mid-tier and entry-tier hardware.</span></li>
-          <li><span class="lt">fsm</span><span class="msg">Built RF driver state machines that handle IRAT handovers and register-level RFFE transitions during mobility and cell reselection.</span></li>
-          <li><span class="lt">audit</span><span class="msg">Identified dead code in legacy RF drivers through manual review cross-checked against code-coverage data, reclaiming flash/RAM on entry-tier SKUs.</span></li>
-          <li><span class="lt">drv</span><span class="msg">Parameterized band-config register tables into one reusable driver codebase across entry-tier SKUs, cutting flash usage.</span></li>
-          <li><span class="lt">test</span><span class="msg">Built host-based unit tests (Unity) for driver logic, isolating register-level RFFE calls behind a fake register bank with dependency injection.</span></li>
-          <li><span class="lt">algo</span><span class="msg">Supported mid-tier carrier-aggregation scalability by extending the band-grouping algorithm's shared-parameter model to new operator band lists.</span></li>
-        </ol>
-      </article>
-
-      <article class="role small">
-        <div class="role-head">
-          <p class="role-dates">Jun — Aug 2018</p>
-          <h3>Research Intern</h3>
-          <p class="role-org">IRCICA Lab (CNRS), Université de Lille · France</p>
-        </div>
-        <ol class="log">
-          <li><span class="lt">dsl</span><span class="msg">Selected for a fully funded research internship. Designed a domain-specific language for <a href="https://sourcesup.renater.fr/wiki/n2s3/dsl">N2S3</a>, an open-source neuromorphic hardware simulator, under Prof. Pierre Boulet.</span></li>
-        </ol>
-      </article>
-
-      <article class="role small">
-        <div class="role-head">
-          <p class="role-dates">May — Jun 2017</p>
-          <h3>Ekalavya Intern</h3>
-          <p class="role-org">IIT Bombay · Mumbai</p>
-        </div>
-        <ol class="log">
-          <li><span class="lt">hw</span><span class="msg">Developed 3D scanner hardware under Prof. Deepak B. Phatak and contributed to its open-source development through FOSSEE, under the National Mission on Education via ICT.</span></li>
-        </ol>
-      </article>
-    </div>
-  </div>
-</section>
-
-<!-- ================= SKILLS ================= -->
-<section class="section" id="skills" style="padding-top:0">
-  <div class="wrap">
-    <p class="kicker"><span>04</span>Skills</p>
-    <h2 class="h2" data-reveal>The register map.</h2>
-    <p class="lede" data-reveal>One 32-bit configuration register, one 4-bit field per skill area. Scroll to write it.</p>
-
-    <div class="reg" id="reg" aria-hidden="true">
-      <div class="reg-top"><span>SKILL_CFG · offset 0x00 · RW</span><span class="reg-val" id="regVal">0x0000_0000</span></div>
-      <div class="fields" id="fields"></div>
-    </div>
-    <p class="reg-caption">Reset value 0x0000_0000. All fields set after you've read this section.</p>
-
-    <table class="regtable" id="regtable">
-      <thead><tr><th>Bits</th><th>Field</th><th>Value</th></tr></thead>
-      <tbody>
-        <tr data-field="LANG"><td class="c-bits">[31:28]</td><td class="c-field">LANG<span>Languages & dev</span></td><td class="c-val">Embedded C, Python, DSA, Perforce, CMake/Make</td></tr>
-        <tr data-field="AGENT"><td class="c-bits">[27:24]</td><td class="c-field">AGENT<span>AI & agents</span></td><td class="c-val">LangGraph, LangChain, agentic RAG, multi-agent orchestration, LLM tool-calling, MCP servers, LangSmith, ReAct / planner-executor agents</td></tr>
-        <tr data-field="TOOL"><td class="c-bits">[23:20]</td><td class="c-field">TOOL<span>IDEs & toolchains</span></td><td class="c-val">STM32CubeIDE, VS Code, ARM GCC toolchain</td></tr>
-        <tr data-field="HW"><td class="c-bits">[19:16]</td><td class="c-field">HW<span>Platforms & hardware</span></td><td class="c-val">ARM Cortex-A/M, Snapdragon modem SoC, STM32 Nucleo-F4, Arduino</td></tr>
-        <tr data-field="RTOS"><td class="c-bits">[15:12]</td><td class="c-field">RTOS<span>RTOS & OS</span></td><td class="c-val">FreeRTOS, Zephyr, Non-HLOS, bare-metal firmware</td></tr>
-        <tr data-field="DBG"><td class="c-bits">[11:8]</td><td class="c-field">DBG<span>Debug & trace</span></td><td class="c-val">JTAG, Trace32, GDB, ST-Link, Segger SystemView, ITM/SWO trace, UART/SPI/I2C</td></tr>
-        <tr data-field="RF"><td class="c-bits">[7:4]</td><td class="c-field">RF<span>RF / PHY / wireless</span></td><td class="c-val">LTE (CA, LAA, EN-DC, 450 MHz), 5G NR, RFFE, SDR, RF calibration, PHY L1</td></tr>
-        <tr data-field="TEST"><td class="c-bits">[3:0]</td><td class="c-field">TEST<span>Test & validation</span></td><td class="c-val">Unity test framework, Anritsu, R&S, QXDM/QCAT, Qualcomm APEX, signaling / non-signaling</td></tr>
-      </tbody>
-    </table>
-  </div>
-</section>
-
-<!-- ================= PROJECTS ================= -->
-<section class="section" id="projects" style="padding-top:0">
-  <div class="wrap">
-    <p class="kicker"><span>05</span>Side projects</p>
-    <h2 class="h2" data-reveal>Built on the bench.</h2>
-    <div class="proj-grid" data-stagger>
-      <article class="proj" data-reveal>
-        <div class="proj-head"><span>~/stm32-bootloader</span><span>2025</span></div>
-        <div class="fig">
-          <svg class="diag" viewBox="0 0 320 110" aria-hidden="true">
-            <text x="150" y="16" fill="#4A4539">UART</text>
-            <path class="ln" pathLength="1" d="M168 22 L168 40" stroke="#A8352A"/>
-            <g stroke="#1C1A16">
-              <rect class="ln" pathLength="1" x="12" y="44" width="296" height="30"/>
-              <line class="ln" pathLength="1" x1="84" y1="44" x2="84" y2="74" style="--dd:.3s"/>
-              <line class="ln" pathLength="1" x1="262" y1="44" x2="262" y2="74" style="--dd:.4s"/>
-            </g>
-            <rect class="pop" x="12" y="44" width="72" height="30" fill="#1C1A16"/>
-            <g class="pop" style="--dd:.4s"><text x="26" y="63" fill="#F4EEE1">BOOT</text><text x="156" y="63" fill="#1C1A16">APP</text><text x="272" y="63" fill="#A8352A">CRC</text>
-            <text x="12" y="92" fill="#6E6656">0x0800_0000</text></g>
-          </svg>
-        </div>
-        <div class="proj-body">
-          <h3>Custom bootloader for STM32</h3>
-          <p>A bare-metal bootloader on the STM32 Nucleo-F4 that updates firmware in the field over UART, with CRC checks.</p>
-          <ul class="chips"><li>Embedded C</li><li>STM32</li><li>UART</li><li>CRC</li></ul>
-        </div>
-      </article>
-
-      <article class="proj" data-reveal>
-        <div class="proj-head"><span>~/evm-firmware</span><span>2020</span></div>
-        <div class="fig">
-          <svg class="diag" viewBox="0 0 320 110" aria-hidden="true">
-            <g stroke="#1C1A16">
-              <path class="ln" pathLength="1" d="M66 50 L124 50"/><path class="ln" pathLength="1" d="M186 50 L244 50" style="--dd:.2s"/>
-              <path class="ln" pathLength="1" d="M276 66 C250 104 70 104 44 66" style="--dd:.4s"/>
-            </g>
-            <path class="ln" pathLength="1" d="M155 28 L155 12" stroke="#A8352A" style="--dd:.6s"/>
-            <g class="pop" fill="#EBE2CF" stroke="#1C1A16" stroke-width="1.2">
-              <circle cx="44" cy="50" r="22"/><circle cx="155" cy="50" r="22"/><circle cx="266" cy="50" r="22"/>
-            </g>
-            <g class="pop" fill="#1C1A16"><text x="29" y="54">IDLE</text><text x="140" y="54">VOTE</text><text x="248" y="54">STORE</text></g>
-            <text class="pop" x="162" y="14" fill="#A8352A" style="--dd:.6s">TAMPER</text>
-          </svg>
-        </div>
-        <div class="proj-body">
-          <h3>Electronic voting machine firmware</h3>
-          <p>STM32 firmware on FreeRTOS for secure vote storage, anti-tamper monitoring and a protected vote count.</p>
-          <ul class="chips"><li>FreeRTOS</li><li>STM32</li><li>C</li><li>UART</li><li>I2C</li></ul>
-        </div>
-      </article>
-
-      <article class="proj" data-reveal>
-        <div class="proj-head"><span>~/predictive-path</span><span>2018</span></div>
-        <div class="fig">
-          <svg class="diag" viewBox="0 0 320 110" aria-hidden="true">
-            <g stroke="#D3C7AD">
-              <line class="ln" pathLength="1" x1="10" y1="20" x2="310" y2="20"/><line class="ln" pathLength="1" x1="10" y1="55" x2="310" y2="55"/><line class="ln" pathLength="1" x1="10" y1="90" x2="310" y2="90"/>
-              <line class="ln" pathLength="1" x1="60" y1="8" x2="60" y2="102"/><line class="ln" pathLength="1" x1="140" y1="8" x2="140" y2="102"/><line class="ln" pathLength="1" x1="220" y1="8" x2="220" y2="102"/><line class="ln" pathLength="1" x1="290" y1="8" x2="290" y2="102"/>
-            </g>
-            <path class="ln" pathLength="1" d="M20 90 L60 90 L60 55 L140 55 L140 20 L290 20" stroke="#A8352A" style="--dd:.4s;stroke-width:2.5"/>
-            <g class="pop" style="--dd:.4s"><circle cx="20" cy="90" r="5" fill="#A8352A"/><circle cx="290" cy="20" r="5" fill="#1C1A16"/>
-            <rect x="133" y="83" width="14" height="14" fill="#2E6A4C"/><rect x="213" y="48" width="14" height="14" fill="#2E6A4C"/></g>
-          </svg>
-        </div>
-        <div class="proj-body">
-          <h3>Predictive Path Analyzer</h3>
-          <p>A green-route optimizer that clears the way for emergency vehicles. Won the KPIT Sparkle Most Popular Award (INR 1 lakh prize).</p>
-          <ul class="chips"><li>Embedded</li><li>Traffic optimization</li></ul>
-        </div>
-      </article>
-    </div>
-    <p class="more"><a href="https://github.com/animeshsrivastava24">More on GitHub ↗</a></p>
-  </div>
-</section>
-
-<!-- ================= RECOGNITION ================= -->
-<section class="section" id="recognition" style="padding-top:0">
-  <div class="wrap">
-    <p class="kicker"><span>06</span>Education & recognition</p>
-    <div class="rec-grid">
-      <div data-reveal>
-        <p class="rank">Rank <span>1</span></p>
-        <p class="rank-cap">Highest GPA in ECE at NIT Hamirpur, with gold medals for both the B.Tech and the M.Tech.</p>
-        <ul class="degrees">
-          <li><strong>M.Tech, Electronics & Communication</strong><span class="meta">2020 · GPA 9.3</span><span class="sub">NIT Hamirpur · integrated dual degree · gold medalist</span></li>
-          <li><strong>B.Tech, Electronics & Communication</strong><span class="meta">2019 · GPA 9.27</span><span class="sub">NIT Hamirpur · integrated dual degree · gold medalist</span></li>
-          <li><strong>Senior secondary & secondary</strong><span class="meta">2014</span><span class="sub">G.N. National Public School, Gorakhpur · 12th 91/100 · 10th GPA 10/10</span></li>
-        </ul>
-      </div>
-      <ul class="awards" data-stagger>
-        <li data-reveal><span class="yr">2023</span><div><h3>S.K. Mitra Memorial Award</h3><p>IETE (Institution of Electronics & Telecommunication Engineers), best research paper.</p></div></li>
-        <li data-reveal><span class="yr">2022</span><div><h3>Qualcomm Orion Insta Award</h3><p>For resolving critical modem RF/receiver issues reported by OEMs.</p></div></li>
-        <li data-reveal><span class="yr">2020</span><div><h3>Two gold medals</h3><p>B.Tech and M.Tech, NIT Hamirpur. Rank 1, highest GPA in ECE.</p></div></li>
-        <li data-reveal><span class="yr">2018</span><div><h3>KPIT Sparkle Award</h3><p>Most Popular Project, INR 1 lakh prize, for road safety and priority vehicle routing.</p></div></li>
-      </ul>
-    </div>
-  </div>
-</section>
-
-<!-- ================= PUBLICATIONS ================= -->
-<section class="section" id="publications" style="padding-top:0">
-  <div class="wrap">
-    <p class="kicker"><span>07</span>Publications</p>
-    <ol class="pubs" data-stagger>
-      <li data-reveal><span class="yr">2022</span><div><h3>A Novel Co-Planar Five Input Majority Gate Design in Quantum-Dot Cellular Automata</h3><p>A. Srivastava & R. Chandel · IETE Technical Review (Taylor & Francis), vol. 39, no. 4, pp. 850–864 <span class="cite">Cited 7×</span></p></div><a class="doi" href="https://doi.org/10.1080/02564602.2021.1914205">DOI ↗</a></li>
-      <li data-reveal><span class="yr">2020</span><div><h3>Comparative Analysis of Cross Wiring Implementation of Digital Function Design in QCA</h3><p>A. Srivastava · International Conference on Communication, Computing and Signal Processing (CCSP), NIT Jalandhar</p></div><span class="nodoi">NITJ/EC/CCSP-2020/003</span></li>
-      <li data-reveal><span class="yr">2019</span><div><h3>A Novel Approach to Low-Cost Plowing Automation Device</h3><p>A. Srivastava, A. Srivastava, V. Yadav & R. Sood · IEEE UPCON 2019, Aligarh, pp. 1–4</p></div><a class="doi" href="https://doi.org/10.1109/UPCON47278.2019.8980184">DOI ↗</a></li>
-      <li data-reveal><span class="yr">2018</span><div><h3>An Innovative Ghost Power Wastage Reduction System</h3><p>A. Srivastava, L. Kumar, R. Sood, A. Srivastava & S. Sharma · IEEE PDGC 2018, Solan, pp. 818–821</p></div><a class="doi" href="https://doi.org/10.1109/PDGC.2018.8745974">DOI ↗</a></li>
-    </ol>
-  </div>
-</section>
-
-<!-- ================= WRITING ================= -->
-<section class="section writing" id="writing">
-  <div class="marquee" aria-hidden="true"><div class="marquee-track" id="marquee">W1C registers<em>/</em>GPIO internals<em>/</em>Linker scripts<em>/</em>Cortex-M boot chain<em>/</em>Flash readout protection<em>/</em>Switch debounce<em>/</em>UART baud crystals<em>/</em>Pre-silicon emulation<em>/</em>W1C registers<em>/</em>GPIO internals<em>/</em>Linker scripts<em>/</em>Cortex-M boot chain<em>/</em>Flash readout protection<em>/</em>Switch debounce<em>/</em>UART baud crystals<em>/</em>Pre-silicon emulation<em>/</em></div></div>
-  <div class="wrap">
-    <p class="kicker"><span>08</span>Writing</p>
-    <div class="write-grid">
-      <p class="handle" data-reveal><span>@</span>thestackpointer</p>
-      <div data-reveal>
-        <p>I explain embedded systems for embedded engineers and CS students: Embedded C, firmware, ARM Cortex-M internals and low-level programming, one infographic at a time.</p>
-        <ul class="chips"><li>Embedded C</li><li>Firmware</li><li>ARM Cortex-M</li><li>DSA</li><li>Low-level programming</li></ul>
-        <div class="write-links">
-          <a href="https://www.linkedin.com/in/animeshsrivastava">Read on LinkedIn ↗</a>
-          <a href="https://thestackpointer.github.io">thestackpointer.github.io ↗</a>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ================= CONTACT ================= -->
-<section class="contact" id="contact">
-  <div class="wrap">
-    <p class="kicker"><span>09</span>Contact</p>
-    <h2 class="d1" data-reveal>Let's talk <em>firmware.</em></h2>
-    <div class="mail-row" data-reveal>
-      <a class="mail" href="mailto:animeshshri.nith@gmail.com">animeshshri.nith@gmail.com</a>
-      <button class="copy" type="button" data-copy="animeshshri.nith@gmail.com">Copy</button>
-    </div>
-    <div class="contact-links" data-reveal>
-      <a href="https://www.linkedin.com/in/animeshsrivastava">LinkedIn ↗</a>
-      <a href="https://github.com/animeshsrivastava24">GitHub ↗</a>
-      <a href="https://thestackpointer.github.io">The Stack Pointer ↗</a>
-      <span style="color:var(--ink-3)">Hyderabad, India</span>
-    </div>
-    <footer class="foot">
+<div class="wrap">
+  <a class="next" href="ai-work.html"><span><small>Start · 01</small><strong>AI Work</strong></span><span class="go" aria-hidden="true">→</span></a>
+  <footer class="foot page-foot">
       <span>© 2026 Animesh Srivastava</span>
-      <span>Plain HTML, CSS & JS · GitHub Pages</span>
+      <span>Plain HTML, CSS &amp; JS · GitHub Pages</span>
       <a href="#top">Back to top ↑</a>
     </footer>
-  </div>
-</section>
+</div>
 </main>
-
-<script>
-(() => {
-  const root = document.documentElement;
-  const RM = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  root.classList.add('js');
-  if (RM) root.classList.add('rm');
-  const $ = (s, r = document) => r.querySelector(s);
-  const $$ = (s, r = document) => Array.from(r.querySelectorAll(s));
-  const clamp = (v, a = 0, b = 1) => Math.min(b, Math.max(a, v));
-
-  /* ---- hero name: split into letters ---- */
-  let ci = 0;
-  $$('.hero-name .line').forEach(line => {
-    const frag = document.createDocumentFragment();
-    Array.from(line.childNodes).forEach(node => {
-      if (node.nodeType === 3) {
-        Array.from(node.textContent.trim()).forEach(ch => {
-          const s = document.createElement('span'); s.className = 'ch'; s.textContent = ch; frag.appendChild(s);
-        });
-      } else if (node.nodeType === 1) { node.classList.add('ch'); frag.appendChild(node); }
-    });
-    line.textContent = ''; line.appendChild(frag);
-  });
-  $$('.hero-name .ch').forEach(c => c.style.setProperty('--i', ci++));
-  const fontsReady = (document.fonts && document.fonts.ready) ? Promise.race([document.fonts.ready, new Promise(r => setTimeout(r, 1500))]) : Promise.resolve();
-  fontsReady.then(() => requestAnimationFrame(() => { document.body.classList.add('ready'); layoutPin(); update(); }));
-
-  /* ---- boot-log timestamps ---- */
-  $$('.role').forEach((role, r) => {
-    let t = 0.000412 + r * 1.204;
-    $$('.log li', role).forEach((li, k) => {
-      t += 0.0731 + ((k * 37 + r * 13) % 11) / 1000;
-      const ts = document.createElement('span'); ts.className = 'ts'; ts.setAttribute('aria-hidden', 'true');
-      ts.textContent = '[' + t.toFixed(6).padStart(10, ' ') + ']';
-      li.prepend(ts);
-    });
-  });
-
-  /* ---- summary words ---- */
-  const scrub = $('[data-scrub]');
-  const words = [];
-  (function split(el) {
-    Array.from(el.childNodes).forEach(node => {
-      if (node.nodeType === 3) {
-        const frag = document.createDocumentFragment();
-        node.textContent.split(/(\s+)/).forEach(part => {
-          if (!part) return;
-          if (/^\s+$/.test(part)) { frag.appendChild(document.createTextNode(part)); return; }
-          const s = document.createElement('span'); s.className = 'w'; s.textContent = part; frag.appendChild(s); words.push(s);
-        });
-        node.replaceWith(frag);
-      } else if (node.nodeType === 1) split(node);
-    });
-  })(scrub);
-  let wordsOn = -1;
-
-  /* ---- register ---- */
-  const rows = $$('#regtable tbody tr');
-  const fieldsEl = $('#fields');
-  const bits = [];
-  const groups = [];
-  rows.forEach((tr, fi) => {
-    const g = document.createElement('div'); g.className = 'fg';
-    const b = document.createElement('div'); b.className = 'fg-bits';
-    for (let k = 0; k < 4; k++) {
-      const n = 31 - (fi * 4 + k);
-      const cell = document.createElement('span'); cell.className = 'bit';
-      cell.innerHTML = '<sup>' + n + '</sup><b>0</b>';
-      b.appendChild(cell); bits.push(cell);
-    }
-    const name = document.createElement('span'); name.className = 'fg-name'; name.textContent = tr.dataset.field;
-    g.appendChild(b); g.appendChild(name); fieldsEl.appendChild(g); groups.push(g);
-  });
-  const regVal = $('#regVal'), regEl = $('#reg');
-  let bitsOn = -1;
-  function setBits(n) {
-    if (n === bitsOn) return; bitsOn = n;
-    let v = 0;
-    bits.forEach((cell, pos) => {
-      const on = pos < n;
-      cell.classList.toggle('on', on);
-      cell.lastChild.textContent = on ? '1' : '0';
-      if (on) v = (v | (1 << (31 - pos))) >>> 0;
-    });
-    groups.forEach((g, fi) => { const on = n >= (fi + 1) * 4; g.classList.toggle('on', on); rows[fi].classList.toggle('on', on); });
-    const h = v.toString(16).toUpperCase().padStart(8, '0');
-    regVal.textContent = '0x' + h.slice(0, 4) + '_' + h.slice(4);
-  }
-
-  /* ---- signal trace ---- */
-  const traceFg = $('#traceFg'), traceBg = $('#traceBg'), tip = $('.trace-tip'), tipLabel = $('.trace-tip b');
-  let d = '';
-  for (let y = 0; y <= 1000; y += 2) {
-    const env = 0.22 + 0.78 * Math.pow(Math.sin(y / 1000 * Math.PI * 7), 2);
-    const x = 20 + 13 * env * Math.sin(y * 0.16);
-    d += (y ? 'L' : 'M') + x.toFixed(2) + ' ' + y;
-  }
-  traceFg.setAttribute('d', d); traceBg.setAttribute('d', d);
-  const traceLen = traceFg.getTotalLength();
-  traceFg.style.strokeDasharray = traceLen;
-  traceFg.style.strokeDashoffset = traceLen;
-
-  /* ---- hero wave ---- */
-  const waveI = $('#waveI'), waveQ = $('#waveQ'), hero = $('.hero');
-  let heroS = 0, heroVisible = true;
-  const t0 = performance.now();
-  function drawWave(now) {
-    const t = (now - t0) / 1000;
-    const amp = 1 - heroS;
-    const k = 0.026 + heroS * 0.03;
-    let dI = '', dQ = '';
-    for (let x = 0; x <= 1200; x += 6) {
-      const env = Math.pow(Math.sin(Math.PI * x / 1200), 1.4) * (0.55 + 0.45 * Math.sin(x / 170 - t * 0.8));
-      const ph = t * 2.1;
-      const yI = 150 + 118 * amp * env * Math.sin(k * x - ph);
-      const yQ = 150 + 118 * amp * env * Math.cos(k * x - ph);
-      dI += (x ? 'L' : 'M') + x + ' ' + yI.toFixed(1);
-      dQ += (x ? 'L' : 'M') + x + ' ' + yQ.toFixed(1);
-    }
-    waveI.setAttribute('d', dI); waveQ.setAttribute('d', dQ);
-  }
-  if (RM) { drawWave(t0 + 1200); }
-  else {
-    const loop = now => { if (heroVisible) drawWave(now); requestAnimationFrame(loop); };
-    requestAnimationFrame(loop);
-    new IntersectionObserver(es => { heroVisible = es[0].isIntersecting; }).observe(hero);
-  }
-
-  /* ---- counters ---- */
-  const counters = $$('[data-count]');
-  if (!RM) counters.forEach(el => { el.textContent = '0'; });
-  function countUp(el) {
-    const end = +el.dataset.count;
-    if (RM) { el.textContent = end; return; }
-    const st = performance.now(), dur = 1500;
-    const step = n => { const q = clamp((n - st) / dur); el.textContent = Math.round(end * (1 - Math.pow(1 - q, 3))); if (q < 1) requestAnimationFrame(step); };
-    requestAnimationFrame(step);
-  }
-
-  /* ---- reveals ---- */
-  $$('[data-stagger]').forEach(p => Array.from(p.children).forEach((c, i) => c.style.setProperty('--d', (i * 90) + 'ms')));
-  const io = new IntersectionObserver(entries => {
-    const hits = entries.filter(e => e.isIntersecting).sort((a, b) => a.boundingClientRect.top - b.boundingClientRect.top);
-    hits.forEach((e, k) => {
-      const el = e.target;
-      if (el.matches('.log li')) el.style.setProperty('--bd', (k * 110) + 'ms');
-      el.classList.add('in');
-      if (el.matches('[data-count]')) countUp(el);
-      io.unobserve(el);
-    });
-  }, { rootMargin: '0px 0px -10% 0px', threshold: 0.12 });
-  $$('[data-reveal], .log li, [data-count], .agent-card, .proj').forEach(el => io.observe(el));
-
-  /* ---- nav ---- */
-  const nav = $('#nav');
-  const links = $$('.nav-links a');
-  const spy = new IntersectionObserver(es => {
-    es.forEach(e => {
-      if (!e.isIntersecting) return;
-      links.forEach(a => a.classList.toggle('active', a.getAttribute('href') === '#' + e.target.id));
-    });
-  }, { rootMargin: '-45% 0px -50% 0px' });
-  ['agents', 'experience', 'skills', 'projects', 'recognition', 'writing', 'about', 'publications', 'contact'].forEach(id => { const s = document.getElementById(id); if (s) spy.observe(s); });
-
-  const menuBtn = $('.menu-btn'), menu = $('#menu');
-  const setMenu = open => { menuBtn.setAttribute('aria-expanded', open); menu.hidden = !open; menuBtn.textContent = open ? 'Close' : 'Menu'; };
-  menuBtn.addEventListener('click', () => setMenu(menuBtn.getAttribute('aria-expanded') !== 'true'));
-  $$('#menu a').forEach(a => a.addEventListener('click', () => setMenu(false)));
-  addEventListener('keydown', e => { if (e.key === 'Escape') setMenu(false); });
-
-  /* ---- copy email ---- */
-  const copyBtn = $('.copy');
-  copyBtn.addEventListener('click', async () => {
-    try { await navigator.clipboard.writeText(copyBtn.dataset.copy); copyBtn.textContent = 'Copied'; }
-    catch (err) { copyBtn.textContent = 'Select the address to copy'; }
-    setTimeout(() => { copyBtn.textContent = 'Copy'; }, 1800);
-  });
-
-  /* ---- pinned agents ---- */
-  const agents = $('#agents'), track = $('.track', agents);
-  let pinOn = false, pinDist = 0;
-  function layoutPin() {
-    pinOn = !RM && innerWidth >= 900 && innerHeight >= 560;
-    agents.classList.toggle('pinned', pinOn);
-    if (pinOn) {
-      track.style.transform = '';
-      pinDist = Math.max(0, track.offsetWidth - innerWidth);
-      agents.style.height = (pinDist + innerHeight) + 'px';
-    } else { agents.style.height = ''; track.style.transform = ''; pinDist = 0; }
-  }
-
-  /* ---- scroll loop ---- */
-  const bar = $('.progress span'), timeline = $('#timeline'), railFill = $('.tl-rail span'), marquee = $('#marquee'), writing = $('#writing');
-  let ticking = false;
-  function update() {
-    ticking = false;
-    const vh = innerHeight, sy = scrollY;
-    const max = root.scrollHeight - vh;
-    const p = max > 0 ? clamp(sy / max) : 0;
-    bar.style.transform = 'scaleX(' + p + ')';
-    nav.classList.toggle('scrolled', sy > 24);
-
-    // trace
-    traceFg.style.strokeDashoffset = traceLen * (1 - p);
-    const pt = traceFg.getPointAtLength(traceLen * p);
-    tip.style.transform = 'translate(' + (12 + pt.x) + 'px,' + (80 + pt.y / 1000 * (vh - 96)) + 'px)';
-    tipLabel.textContent = String(Math.round(p * 100)).padStart(2, '0') + '%';
-
-    // hero
-    heroS = clamp(sy / (hero.offsetHeight * 0.85));
-
-    // summary scrub
-    if (!RM) {
-      const r = scrub.getBoundingClientRect();
-      const sp = clamp((vh * 0.85 - r.top) / (r.height + vh * 0.3));
-      const n = Math.round(sp * words.length);
-      if (n !== wordsOn) { words.forEach((w, i) => w.classList.toggle('on', i < n)); wordsOn = n; }
-    }
-
-    // pinned agents
-    if (pinOn) {
-      const r = agents.getBoundingClientRect();
-      const ap = clamp(-r.top / Math.max(1, r.height - vh));
-      track.style.transform = 'translate3d(' + (-ap * pinDist).toFixed(1) + 'px,0,0)';
-      agents.style.setProperty('--ap', ap);
-    }
-
-    // timeline rail
-    const tr = timeline.getBoundingClientRect();
-    railFill.style.setProperty('--p', RM ? 1 : clamp((vh * 0.6 - tr.top) / tr.height));
-
-    // register
-    if (RM) setBits(32);
-    else {
-      const rr = regEl.getBoundingClientRect();
-      setBits(Math.round(clamp((vh * 0.88 - rr.top) / (vh * 0.55)) * 32));
-    }
-
-    // marquee
-    if (!RM) {
-      const wr = writing.getBoundingClientRect();
-      if (wr.bottom > 0 && wr.top < vh) {
-        const half = marquee.scrollWidth / 2;
-        const x = ((vh - wr.top) * 0.4) % half;
-        marquee.style.transform = 'translate3d(' + (-x).toFixed(1) + 'px,0,0)';
-      }
-    }
-  }
-  const onScroll = () => { if (!ticking) { ticking = true; requestAnimationFrame(update); } };
-  addEventListener('scroll', onScroll, { passive: true });
-  let rz;
-  addEventListener('resize', () => { clearTimeout(rz); rz = setTimeout(() => { layoutPin(); update(); }, 120); });
-  layoutPin();
-  update();
-})();
-</script>
+<script src="assets/site.js"></script>
 </body>
 </html>

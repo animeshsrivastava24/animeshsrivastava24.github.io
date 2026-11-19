@@ -2,17 +2,28 @@
 
 Personal site of Animesh Srivastava: embedded firmware engineer (RF/PHY Layer-1, RTOS, AI debug agents).
 
-Plain HTML, CSS and JavaScript in one file (`index.html`). No build step, no dependencies.
-Fonts load from Google Fonts. Design decisions are in `DESIGN.md`.
+Plain HTML, CSS and JavaScript. No build step, no dependencies. Fonts load from Google Fonts.
+Design decisions are in `DESIGN.md`.
 
-## Deploy on GitHub Pages
+## Structure
 
-1. Create a public repository named exactly `animeshsrivastava24.github.io`.
-2. Upload `index.html`, `.nojekyll`, `README.md` and `DESIGN.md` to the root of the `main` branch.
-3. Settings → Pages → Source: "Deploy from a branch", branch `main`, folder `/ (root)`.
-4. The site goes live at https://animeshsrivastava24.github.io within a minute or two.
+| File | Page |
+|---|---|
+| `index.html` | Home: name, 11 page tiles, summary |
+| `ai-work.html` | 01 AI Work |
+| `agents.html` | 02 Agents |
+| `skills.html` | 03 Skills (register map) |
+| `mcp.html` | 04 MCP servers |
+| `diagrams.html` | 05 Design diagrams |
+| `projects.html` | 06 Projects |
+| `experience.html` | 07 Experience |
+| `education.html` | 08 Education & awards |
+| `publications.html` | 09 Publications |
+| `writing.html` | 10 Writing |
+| `contact.html` | 11 Contact |
+| `assets/site.css` | Shared styles (colours and fonts are CSS variables at the top) |
+| `assets/site.js` | Shared scroll animations |
 
 ## Editing
 
-All content is in `index.html`. Search for the section comments (`<!-- ===== EXPERIENCE ===== -->` etc.).
-Colours and fonts are CSS variables at the top of the `<style>` block.
+Each page's content is plain HTML in its own file. GitHub Pages publishes the `main` branch root.

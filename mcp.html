@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>MCP — Animesh Srivastava</title>
+<meta name="description" content="MCP servers for embedded work: register maps from CMSIS-SVD and Cortex-M HardFault post-mortems.">
+<meta property="og:title" content="MCP — Animesh Srivastava">
+<meta property="og:description" content="MCP servers for embedded work: register maps from CMSIS-SVD and Cortex-M HardFault post-mortems.">
+<meta property="og:type" content="website">
+<meta name="theme-color" content="#F4EEE1">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='6' fill='%231C1A16'/%3E%3Ctext x='32' y='43' font-family='Georgia,serif' font-size='30' text-anchor='middle' fill='%23F4EEE1'%3EAS%3C/text%3E%3Ccircle cx='51' cy='41' r='3.5' fill='%23C9962E'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/site.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<div class="progress" aria-hidden="true"><span></span></div>
+<div class="trace" aria-hidden="true">
+  <svg viewBox="0 0 40 1000" preserveAspectRatio="none"><path id="traceBg"/><path id="traceFg"/></svg>
+  <div class="trace-tip"><i></i><b>00%</b></div>
+</div>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
+<marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#1C1A16"/></marker>
+<marker id="arrR" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#A8352A"/></marker>
+</defs></svg><header class="nav" id="nav">
+  <div class="wrap nav-in">
+    <a class="mark" href="index.html" aria-label="Animesh Srivastava, home">A<span>S</span></a>
+    <span class="nav-here"><b>04</b>MCP</span>
+    <div class="nav-right">
+      <a class="btn btn-small" href="contact.html">Contact</a>
+      <button class="menu-btn" aria-expanded="false" aria-controls="menu">All pages</button>
+    </div>
+  </div>
+</header>
+<nav class="menu" id="menu" hidden aria-label="All pages">
+  <div class="menu-grid">
+    <a href="index.html"><span>00</span>Home</a>
+    <a href="ai-work.html"><svg class="ico" viewBox="0 0 48 48" aria-hidden="true"><rect class="dr" pathLength="1" x="12" y="12" width="24" height="24" rx="2"/><path d="M18 12V7M24 12V7M30 12V7M18 41v-5M24 41v-5M30 41v-5M12 18H7M12 24H7M12 30H7M41 18h-5M41 24h-5M41 30h-5"/><path class="acc" d="M24 17.5l1.8 4.7 4.7 1.8-4.7 1.8L24 30.5l-1.8-4.7-4.7-1.8 4.7-1.8z"/></svg><span>01</span>AI Work</a>
+<a href="agents.html"><svg class="ico" viewBox="0 0 48 48" aria-hidden="true"><path class="dr" pathLength="1" d="M24 14v8M20 29.5L13.5 33M28 29.5L34.5 33"/><circle cx="24" cy="10" r="4"/><circle cx="10" cy="36" r="4"/><circle cx="38" cy="36" r="4"/><circle class="acc" cx="24" cy="26.5" r="5"/></svg><span>02</span>Agents</a>
+<a href="skills.html"><svg class="ico" viewBox="0 0 48 48" aria-hidden="true"><rect x="5" y="15" width="38" height="18" rx="1"/><path d="M14.5 15v18M24 15v18M33.5 15v18"/><rect class="fillacc" x="7.5" y="17.5" width="4.5" height="13"/><rect class="fillacc" x="26.5" y="17.5" width="4.5" height="13"/><path class="dr" pathLength="1" d="M5 40h38"/></svg><span>03</span>Skills</a>
+<a href="mcp.html" aria-current="page"><svg class="ico" viewBox="0 0 48 48" aria-hidden="true"><path d="M18 6v9M30 6v9"/><path d="M13 15h22v7a11 11 0 0 1-22 0z"/><path class="dr acc" pathLength="1" d="M24 33v9"/><path class="acc" d="M19 42h10"/></svg><span>04</span>MCP</a>
+<a href="diagrams.html"><svg class="ico" viewBox="0 0 48 48" aria-hidden="true"><rect x="5" y="6" width="15" height="10" rx="1"/><rect x="28" y="6" width="15" height="10" rx="1"/><path class="dr" pathLength="1" d="M12.5 16v6h23v-6M24 22v6"/><path class="acc" d="M24 28l7 7-7 7-7-7z"/></svg><span>05</span>Design Diagrams</a>
+<a href="projects.html"><svg class="ico" viewBox="0 0 48 48" aria-hidden="true"><rect x="6" y="10" width="36" height="28" rx="2"/><rect class="acc" x="19" y="19" width="10" height="10"/><path class="dr" pathLength="1" d="M6 18h6l3 3h4M42 30h-6l-3-3h-4M24 10v9M24 29v9"/><circle cx="11" cy="33" r="1.5"/><circle cx="37" cy="15" r="1.5"/></svg><span>06</span>Projects</a>
+<a href="experience.html"><svg class="ico" viewBox="0 0 48 48" aria-hidden="true"><path class="dr" pathLength="1" d="M12 6v36"/><circle class="fillacc" cx="12" cy="12" r="3.5"/><circle cx="12" cy="24" r="3.5" fill="var(--paper)"/><circle cx="12" cy="36" r="3.5" fill="var(--paper)"/><path d="M20 12h20M20 24h15M20 36h18"/></svg><span>07</span>Experience</a>
+<a href="education.html"><svg class="ico" viewBox="0 0 48 48" aria-hidden="true"><circle cx="24" cy="31" r="10"/><path d="M17 23.5L11 6h8l5 10 5-10h8l-6 17.5"/><path class="acc" d="M24 25.5l1.6 3.3 3.6.5-2.6 2.5.6 3.6L24 33.7l-3.2 1.7.6-3.6-2.6-2.5 3.6-.5z"/></svg><span>08</span>Education & Awards</a>
+<a href="publications.html"><svg class="ico" viewBox="0 0 48 48" aria-hidden="true"><path d="M12 6h18l8 8v28H12z"/><path d="M30 6v8h8"/><path class="acc" d="M17 16h8"/><path class="dr" pathLength="1" d="M17 23h16M17 29h16M17 35h10"/></svg><span>09</span>Publications</a>
+<a href="writing.html"><svg class="ico" viewBox="0 0 48 48" aria-hidden="true"><path d="M24 6l10 16-10 20-10-20z"/><path class="acc" d="M24 24.5V42"/><circle cx="24" cy="22" r="2.5"/><path class="dr" pathLength="1" d="M6 44h36"/></svg><span>10</span>Writing</a>
+<a href="contact.html"><svg class="ico" viewBox="0 0 48 48" aria-hidden="true"><rect x="6" y="12" width="36" height="25" rx="2"/><path class="dr acc" pathLength="1" d="M6 14l18 13 18-13"/></svg><span>11</span>Contact</a>
+  </div>
+</nav>
+<main id="main">
+<div id="top"></div>
+<section class="page-head">
+  <div class="wrap">
+    <a class="crumb" href="index.html">← Home</a>
+    <p class="page-num">04 / 11</p>
+    <div class="page-title"><svg class="ico" viewBox="0 0 48 48" aria-hidden="true"><path d="M18 6v9M30 6v9"/><path d="M13 15h22v7a11 11 0 0 1-22 0z"/><path class="dr acc" pathLength="1" d="M24 33v9"/><path class="acc" d="M19 42h10"/></svg><h1 class="h1">MCP <em>servers.</em></h1></div>
+    <p class="lede">Model Context Protocol servers let an AI assistant call real tools. I am building two that give LLMs the context embedded work needs: register maps and crash dumps.</p>
+  </div>
+</section>
+<section class="section first">
+  <div class="wrap">
+    <p class="kicker"><span>01</span>How it fits</p>
+    <figure class="dgm wide" data-reveal>
+      <header><span>Fig. M1 — An MCP server between an AI client and embedded data</span><span>Concept</span></header>
+      <div class="fig">
+        <svg class="dsvg diag" viewBox="0 0 760 200" aria-hidden="true">
+          <rect class="bx pop" x="20" y="75" width="160" height="50"/>
+          <text class="pop" x="34" y="97">AI CLIENT</text><text class="pop t2" x="34" y="113">Claude, IDE agent</text>
+          <path class="ln" pathLength="1" d="M180 100 H262" marker-start="url(#arr)" marker-end="url(#arr)"/>
+          <text class="pop t2" x="186" y="90">JSON-RPC · stdio</text>
+          <rect class="bx hl pop" x="266" y="75" width="170" height="50"/>
+          <text class="pop hlt" x="280" y="97">MCP SERVER</text><text class="pop hlt t2" x="280" y="113">tools + resources</text>
+          <path class="ln" pathLength="1" d="M436 92 C490 92 490 37 536 37" marker-end="url(#arr)" style="--dd:.3s"/>
+          <path class="ln" pathLength="1" d="M436 100 H536" marker-end="url(#arr)" style="--dd:.4s"/>
+          <path class="ln" pathLength="1" d="M436 108 C490 108 490 163 536 163" marker-end="url(#arr)" style="--dd:.5s"/>
+          <rect class="bx pop" x="540" y="15" width="200" height="44"/><text class="pop" x="554" y="34">SVD FILES</text><text class="pop t2" x="554" y="49">register maps</text>
+          <rect class="bx pop" x="540" y="78" width="200" height="44"/><text class="pop" x="554" y="97">ELF + DWARF</text><text class="pop t2" x="554" y="112">symbols and source lines</text>
+          <rect class="bx acc pop" x="540" y="141" width="200" height="44"/><text class="pop" x="554" y="160">UART FAULT DUMPS</text><text class="pop t2" x="554" y="175">HardFault captures</text>
+        </svg>
+      </div>
+      <figcaption><strong>Give the model the datasheet, not a guess.</strong>The Model Context Protocol lets an AI assistant call tools on your machine. These servers expose the files embedded engineers already rely on.</figcaption>
+    </figure>
+  </div>
+</section>
+
+<section class="section" style="padding-top:0">
+  <div class="wrap">
+    <p class="kicker"><span>02</span>Servers</p>
+
+    <article class="server" data-reveal>
+      <div class="server-info">
+        <header><span>SERVER 01 · regmap-mcp</span><span class="status">In progress</span></header>
+        <h2>Register maps, not guesses.</h2>
+        <p>LLMs often invent register bit positions. regmap-mcp loads CMSIS-SVD files for STM32 parts and answers from the vendor's own register map: peripherals, registers, fields and reset values.</p>
+        <ul class="chips"><li>Python</li><li>MCP SDK</li><li>CMSIS-SVD</li><li>STM32</li></ul>
+      </div>
+<pre class="tools"><span class="c"># tools</span>
+<span class="k">list_peripherals</span>(device)
+    <span class="c">→ [GPIOA, RCC, USART1, …]</span>
+<span class="k">get_register</span>(device, periph, reg)
+    <span class="c">→ address, reset value, fields[]</span>
+<span class="k">decode</span>(device, periph, reg, value)
+    <span class="c">→</span> <span class="s">{ "MODER5": "0b10 · alternate function", … }</span>
+<span class="k">encode</span>(device, periph, reg, fields)
+    <span class="c">→</span> <span class="s">0x0000_0800</span></pre>
+    </article>
+
+    <article class="server" data-reveal>
+      <div class="server-info">
+        <header><span>SERVER 02 · faultdump-mcp</span><span class="status">In progress</span></header>
+        <h2>Post-mortems for Cortex-M crashes.</h2>
+        <p>Takes a HardFault dump captured over UART (stacked registers plus CFSR, HFSR, MMFAR and BFAR), decodes the fault cause and maps PC and LR back to source lines using the ELF file.</p>
+        <ul class="chips"><li>Python</li><li>MCP SDK</li><li>ARM Cortex-M</li><li>ELF / DWARF</li></ul>
+      </div>
+<pre class="tools"><span class="c"># tools</span>
+<span class="k">decode_fault</span>(dump)
+    <span class="c">→ cause, faulting address, notes</span>
+<span class="k">stack_frame</span>(dump)
+    <span class="c">→ r0–r3, r12, lr, pc, xpsr</span>
+<span class="k">symbolize</span>(addr, elf)
+    <span class="c">→</span> <span class="s">"rf_drv.c:212 · rffe_write()"</span>
+<span class="k">last_faults</span>(n)
+    <span class="c">→ the n most recent dumps from the log</span></pre>
+    </article>
+
+    <p class="note">Both servers are in progress. This page will link to their repositories when they are public.</p>
+  </div>
+</section>
+<div class="wrap next-wrap">
+  <a class="next" href="diagrams.html"><span><small>Next · 05</small><strong>Design Diagrams</strong></span><span class="go" aria-hidden="true">→</span></a>
+  <footer class="foot page-foot">
+      <span>© 2026 Animesh Srivastava</span>
+      <span>Plain HTML, CSS &amp; JS · GitHub Pages</span>
+      <a href="#top">Back to top ↑</a>
+    </footer>
+</div>
+</main>
+<script src="assets/site.js"></script>
+</body>
+</html>

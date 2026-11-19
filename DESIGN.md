@@ -78,3 +78,15 @@ Radius 2px (buttons, chips) and 4px (cards). No soft shadows. One hard shadow,
 
 No stock photos. Inline SVG line diagrams only (threads, graphs, memory maps),
 drawn in ink/gold/red with 1.5px strokes. Arrows are text glyphs (→ ↗).
+
+## Site structure (v2)
+
+- **Home**: small name and profile on the left; an index of 11 page tiles on the right
+  (4 × 3 grid, the 12th cell is a live signal tile). The I/Q waveform runs under the fold.
+- **Tile**: 1px ink grid lines, line icon (48px, 1.5px stroke, one red accent), number,
+  serif label, mono caption, ↗. Hover inverts to ink with gold accents and redraws the icon.
+- **Page head** (every page): ← Home, page number "NN / 11", icon + serif H1 with red italic word, lede.
+- **Next link** at the bottom of every page chains the pages in tile order, back to Home.
+- **Nav**: AS mark, current page, Contact, and "All pages" overlay listing every page.
+- **Diagram figure**: ink-bordered card, mono header (Fig. NN — title · tag), SVG on paper-2
+  with boxes (paper fill, ink stroke; ink fill = output; red stroke = the critical step), caption.
