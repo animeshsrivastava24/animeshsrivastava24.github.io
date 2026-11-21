@@ -1,155 +1,33 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Projects — Animesh Srivastava</title>
-<meta name="description" content="Embedded side projects: STM32 UART bootloader, FreeRTOS voting machine firmware, and planned builds.">
-<meta property="og:title" content="Projects — Animesh Srivastava">
-<meta property="og:description" content="Embedded side projects: STM32 UART bootloader, FreeRTOS voting machine firmware, and planned builds.">
+<title>Projects | Animesh Srivastava</title>
+<meta name="description" content="Animesh Srivastava: embedded firmware engineer building RF/PHY Layer-1 drivers for Snapdragon modems and AI agents that debug them.">
+<meta name="theme-color" content="#0F2A2C">
+<meta property="og:title" content="Projects | Animesh Srivastava">
+<meta property="og:description" content="Animesh Srivastava: embedded firmware engineer building RF/PHY Layer-1 drivers for Snapdragon modems and AI agents that debug them.">
 <meta property="og:type" content="website">
-<meta name="theme-color" content="#F4EEE1">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='6' fill='%231C1A16'/%3E%3Ctext x='32' y='43' font-family='Georgia,serif' font-size='30' text-anchor='middle' fill='%23F4EEE1'%3EAS%3C/text%3E%3Ccircle cx='51' cy='41' r='3.5' fill='%23C9962E'/%3E%3C/svg%3E">
-<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%230F2A2C'/%3E%3Ccircle cx='11' cy='11' r='3' fill='%23ECF5F3'/%3E%3Ccircle cx='21' cy='21' r='4' fill='%23F2C14E'/%3E%3C/svg%3E">
+<link rel="preload" href="assets/fonts/outfit.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="assets/site.css">
 </head>
-<body>
+<body data-section="projects">
 <a class="skip" href="#main">Skip to content</a>
-<div class="progress" aria-hidden="true"><span></span></div>
-<div class="trace" aria-hidden="true">
-  <svg viewBox="0 0 40 1000" preserveAspectRatio="none"><path id="traceBg"/><path id="traceFg"/></svg>
-  <div class="trace-tip"><i></i><b>00%</b></div>
-</div>
-<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
-<marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#1C1A16"/></marker>
-<marker id="arrR" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#A8352A"/></marker>
-</defs></svg><header class="nav" id="nav">
-  <div class="wrap nav-in">
-    <a class="mark" href="index.html" aria-label="Animesh Srivastava, home">A<span>S</span></a>
-    <span class="nav-here"><b>06</b>Projects</span>
-    <div class="nav-right">
-      <a class="btn btn-small" href="contact.html">Contact</a>
-      <button class="menu-btn" aria-expanded="false" aria-controls="menu">All pages</button>
-    </div>
-  </div>
+<header class="ih">
+  <div class="mm"><svg width="58" height="58" viewBox="0 0 70 70" role="img" aria-label="Site map"><line x1="35" x2="35" y1="2" y2="68" stroke="#2A4E52"/><line y1="35" y2="35" x1="2" x2="68" stroke="#2A4E52"/><a href="awards.html"><title>Awards</title><circle cx="11" cy="11" r="3.6" fill="#ECF5F3"/><circle cx="11" cy="11" r="8" fill="transparent"/></a><circle cx="27" cy="11" r="1.8" fill="#3B6467"/><circle cx="43" cy="11" r="1.8" fill="#3B6467"/><a href="experience.html"><title>Experience</title><circle cx="59" cy="11" r="3.6" fill="#ECF5F3"/><circle cx="59" cy="11" r="8" fill="transparent"/></a><circle cx="11" cy="27" r="1.8" fill="#3B6467"/><circle cx="27" cy="27" r="9" fill="rgba(242,193,78,.16)"/><circle cx="27" cy="27" r="4.5" fill="#F2C14E"/><circle cx="43" cy="27" r="1.8" fill="#3B6467"/><circle cx="59" cy="27" r="1.8" fill="#3B6467"/><a href="learning.html"><title>Learning paths</title><circle cx="11" cy="43" r="3.6" fill="#ECF5F3"/><circle cx="11" cy="43" r="8" fill="transparent"/></a><circle cx="27" cy="43" r="1.8" fill="#3B6467"/><a href="ai.html"><title>AI projects</title><circle cx="43" cy="43" r="3.6" fill="#ECF5F3"/><circle cx="43" cy="43" r="8" fill="transparent"/></a><circle cx="59" cy="43" r="1.8" fill="#3B6467"/><circle cx="11" cy="59" r="1.8" fill="#3B6467"/><circle cx="27" cy="59" r="1.8" fill="#3B6467"/><circle cx="43" cy="59" r="1.8" fill="#3B6467"/><a href="publications.html"><title>Publications</title><circle cx="59" cy="59" r="3.6" fill="#ECF5F3"/><circle cx="59" cy="59" r="8" fill="transparent"/></a></svg><div><a class="home" href="index.html">Animesh Srivastava</a><span class="here">Projects</span></div></div>
+  <nav class="links" aria-label="Contact"><a href="https://thestackpointer.github.io" class="hide-s">Writing</a><a href="https://github.com/animeshsrivastava24" class="hide-s">GitHub</a><a href="https://www.linkedin.com/in/animeshsrivastava">LinkedIn</a><a class="btn" href="mailto:animeshshri.nith@gmail.com">Email me</a></nav>
 </header>
-<nav class="menu" id="menu" hidden aria-label="All pages">
-  <div class="menu-grid">
-    <a href="index.html"><span>00</span>Home</a>
-    <a href="ai-work.html"><svg class="ico" viewBox="0 0 48 48" aria-hidden="true"><rect class="dr" pathLength="1" x="12" y="12" width="24" height="24" rx="2"/><path d="M18 12V7M24 12V7M30 12V7M18 41v-5M24 41v-5M30 41v-5M12 18H7M12 24H7M12 30H7M41 18h-5M41 24h-5M41 30h-5"/><path class="acc" d="M24 17.5l1.8 4.7 4.7 1.8-4.7 1.8L24 30.5l-1.8-4.7-4.7-1.8 4.7-1.8z"/></svg><span>01</span>AI Work</a>
-<a href="agents.html"><svg class="ico" viewBox="0 0 48 48" aria-hidden="true"><path class="dr" pathLength="1" d="M24 14v8M20 29.5L13.5 33M28 29.5L34.5 33"/><circle cx="24" cy="10" r="4"/><circle cx="10" cy="36" r="4"/><circle cx="38" cy="36" r="4"/><circle class="acc" cx="24" cy="26.5" r="5"/></svg><span>02</span>Agents</a>
-<a href="skills.html"><svg class="ico" viewBox="0 0 48 48" aria-hidden="true"><rect x="5" y="15" width="38" height="18" rx="1"/><path d="M14.5 15v18M24 15v18M33.5 15v18"/><rect class="fillacc" x="7.5" y="17.5" width="4.5" height="13"/><rect class="fillacc" x="26.5" y="17.5" width="4.5" height="13"/><path class="dr" pathLength="1" d="M5 40h38"/></svg><span>03</span>Skills</a>
-<a href="mcp.html"><svg class="ico" viewBox="0 0 48 48" aria-hidden="true"><path d="M18 6v9M30 6v9"/><path d="M13 15h22v7a11 11 0 0 1-22 0z"/><path class="dr acc" pathLength="1" d="M24 33v9"/><path class="acc" d="M19 42h10"/></svg><span>04</span>MCP</a>
-<a href="diagrams.html"><svg class="ico" viewBox="0 0 48 48" aria-hidden="true"><rect x="5" y="6" width="15" height="10" rx="1"/><rect x="28" y="6" width="15" height="10" rx="1"/><path class="dr" pathLength="1" d="M12.5 16v6h23v-6M24 22v6"/><path class="acc" d="M24 28l7 7-7 7-7-7z"/></svg><span>05</span>Design Diagrams</a>
-<a href="projects.html" aria-current="page"><svg class="ico" viewBox="0 0 48 48" aria-hidden="true"><rect x="6" y="10" width="36" height="28" rx="2"/><rect class="acc" x="19" y="19" width="10" height="10"/><path class="dr" pathLength="1" d="M6 18h6l3 3h4M42 30h-6l-3-3h-4M24 10v9M24 29v9"/><circle cx="11" cy="33" r="1.5"/><circle cx="37" cy="15" r="1.5"/></svg><span>06</span>Projects</a>
-<a href="experience.html"><svg class="ico" viewBox="0 0 48 48" aria-hidden="true"><path class="dr" pathLength="1" d="M12 6v36"/><circle class="fillacc" cx="12" cy="12" r="3.5"/><circle cx="12" cy="24" r="3.5" fill="var(--paper)"/><circle cx="12" cy="36" r="3.5" fill="var(--paper)"/><path d="M20 12h20M20 24h15M20 36h18"/></svg><span>07</span>Experience</a>
-<a href="education.html"><svg class="ico" viewBox="0 0 48 48" aria-hidden="true"><circle cx="24" cy="31" r="10"/><path d="M17 23.5L11 6h8l5 10 5-10h8l-6 17.5"/><path class="acc" d="M24 25.5l1.6 3.3 3.6.5-2.6 2.5.6 3.6L24 33.7l-3.2 1.7.6-3.6-2.6-2.5 3.6-.5z"/></svg><span>08</span>Education & Awards</a>
-<a href="publications.html"><svg class="ico" viewBox="0 0 48 48" aria-hidden="true"><path d="M12 6h18l8 8v28H12z"/><path d="M30 6v8h8"/><path class="acc" d="M17 16h8"/><path class="dr" pathLength="1" d="M17 23h16M17 29h16M17 35h10"/></svg><span>09</span>Publications</a>
-<a href="writing.html"><svg class="ico" viewBox="0 0 48 48" aria-hidden="true"><path d="M24 6l10 16-10 20-10-20z"/><path class="acc" d="M24 24.5V42"/><circle cx="24" cy="22" r="2.5"/><path class="dr" pathLength="1" d="M6 44h36"/></svg><span>10</span>Writing</a>
-<a href="contact.html"><svg class="ico" viewBox="0 0 48 48" aria-hidden="true"><rect x="6" y="12" width="36" height="25" rx="2"/><path class="dr acc" pathLength="1" d="M6 14l18 13 18-13"/></svg><span>11</span>Contact</a>
-  </div>
-</nav>
-<main id="main">
-<div id="top"></div>
-<section class="page-head">
-  <div class="wrap">
-    <a class="crumb" href="index.html">← Home</a>
-    <p class="page-num">06 / 11</p>
-    <div class="page-title"><svg class="ico" viewBox="0 0 48 48" aria-hidden="true"><rect x="6" y="10" width="36" height="28" rx="2"/><rect class="acc" x="19" y="19" width="10" height="10"/><path class="dr" pathLength="1" d="M6 18h6l3 3h4M42 30h-6l-3-3h-4M24 10v9M24 29v9"/><circle cx="11" cy="33" r="1.5"/><circle cx="37" cy="15" r="1.5"/></svg><h1 class="h1">Projects<em>.</em></h1></div>
-    <p class="lede">Firmware I build outside work, mostly on STM32 boards.</p>
-  </div>
-</section>
-<section class="section first" id="projects">
-  <div class="wrap">
-    <h2 class="h2" data-reveal>Built on the bench.</h2>
-    <div class="proj-grid" data-stagger>
-      <article class="proj" data-reveal>
-        <div class="proj-head"><span>~/stm32-bootloader</span><span>2025</span></div>
-        <div class="fig">
-          <svg class="diag" viewBox="0 0 320 110" aria-hidden="true">
-            <text x="150" y="16" fill="#4A4539">UART</text>
-            <path class="ln" pathLength="1" d="M168 22 L168 40" stroke="#A8352A"/>
-            <g stroke="#1C1A16">
-              <rect class="ln" pathLength="1" x="12" y="44" width="296" height="30"/>
-              <line class="ln" pathLength="1" x1="84" y1="44" x2="84" y2="74" style="--dd:.3s"/>
-              <line class="ln" pathLength="1" x1="262" y1="44" x2="262" y2="74" style="--dd:.4s"/>
-            </g>
-            <rect class="pop" x="12" y="44" width="72" height="30" fill="#1C1A16"/>
-            <g class="pop" style="--dd:.4s"><text x="26" y="63" fill="#F4EEE1">BOOT</text><text x="156" y="63" fill="#1C1A16">APP</text><text x="272" y="63" fill="#A8352A">CRC</text>
-            <text x="12" y="92" fill="#6E6656">0x0800_0000</text></g>
-          </svg>
-        </div>
-        <div class="proj-body">
-          <h3>Custom bootloader for STM32</h3>
-          <p>A bare-metal bootloader on the STM32 Nucleo-F4 that updates firmware in the field over UART, with CRC checks.</p>
-          <ul class="chips"><li>Embedded C</li><li>STM32</li><li>UART</li><li>CRC</li></ul>
-        </div>
-      </article>
-
-      <article class="proj" data-reveal>
-        <div class="proj-head"><span>~/evm-firmware</span><span>2020</span></div>
-        <div class="fig">
-          <svg class="diag" viewBox="0 0 320 110" aria-hidden="true">
-            <g stroke="#1C1A16">
-              <path class="ln" pathLength="1" d="M66 50 L124 50"/><path class="ln" pathLength="1" d="M186 50 L244 50" style="--dd:.2s"/>
-              <path class="ln" pathLength="1" d="M276 66 C250 104 70 104 44 66" style="--dd:.4s"/>
-            </g>
-            <path class="ln" pathLength="1" d="M155 28 L155 12" stroke="#A8352A" style="--dd:.6s"/>
-            <g class="pop" fill="#EBE2CF" stroke="#1C1A16" stroke-width="1.2">
-              <circle cx="44" cy="50" r="22"/><circle cx="155" cy="50" r="22"/><circle cx="266" cy="50" r="22"/>
-            </g>
-            <g class="pop" fill="#1C1A16"><text x="29" y="54">IDLE</text><text x="140" y="54">VOTE</text><text x="248" y="54">STORE</text></g>
-            <text class="pop" x="162" y="14" fill="#A8352A" style="--dd:.6s">TAMPER</text>
-          </svg>
-        </div>
-        <div class="proj-body">
-          <h3>Electronic voting machine firmware</h3>
-          <p>STM32 firmware on FreeRTOS for secure vote storage, anti-tamper monitoring and a protected vote count.</p>
-          <ul class="chips"><li>FreeRTOS</li><li>STM32</li><li>C</li><li>UART</li><li>I2C</li></ul>
-        </div>
-      </article>
-
-      <article class="proj" data-reveal>
-        <div class="proj-head"><span>~/predictive-path</span><span>2018</span></div>
-        <div class="fig">
-          <svg class="diag" viewBox="0 0 320 110" aria-hidden="true">
-            <g stroke="#D3C7AD">
-              <line class="ln" pathLength="1" x1="10" y1="20" x2="310" y2="20"/><line class="ln" pathLength="1" x1="10" y1="55" x2="310" y2="55"/><line class="ln" pathLength="1" x1="10" y1="90" x2="310" y2="90"/>
-              <line class="ln" pathLength="1" x1="60" y1="8" x2="60" y2="102"/><line class="ln" pathLength="1" x1="140" y1="8" x2="140" y2="102"/><line class="ln" pathLength="1" x1="220" y1="8" x2="220" y2="102"/><line class="ln" pathLength="1" x1="290" y1="8" x2="290" y2="102"/>
-            </g>
-            <path class="ln" pathLength="1" d="M20 90 L60 90 L60 55 L140 55 L140 20 L290 20" stroke="#A8352A" style="--dd:.4s;stroke-width:2.5"/>
-            <g class="pop" style="--dd:.4s"><circle cx="20" cy="90" r="5" fill="#A8352A"/><circle cx="290" cy="20" r="5" fill="#1C1A16"/>
-            <rect x="133" y="83" width="14" height="14" fill="#2E6A4C"/><rect x="213" y="48" width="14" height="14" fill="#2E6A4C"/></g>
-          </svg>
-        </div>
-        <div class="proj-body">
-          <h3>Predictive Path Analyzer</h3>
-          <p>A green-route optimizer that clears the way for emergency vehicles. Won the KPIT Sparkle Most Popular Award (INR 1 lakh prize).</p>
-          <ul class="chips"><li>Embedded</li><li>Traffic optimization</li></ul>
-        </div>
-      </article>
-    </div>
-    <p class="kicker" style="margin-top:96px"><span>Next</span>On the bench · Nucleo-H743ZI</p>
-    <h2 class="h2" data-reveal>Planned builds.</h2>
-    <ul class="bench" data-stagger>
-      <li data-reveal><code>mini-rtos</code><p>A small preemptive RTOS kernel: scheduler, context switch and synchronization primitives.</p><span class="status">Planned</span></li>
-      <li data-reveal><code>slotboot</code><p>An A/B slot bootloader with image verification and rollback.</p><span class="status">Planned</span></li>
-      <li data-reveal><code>dmalab</code><p>DMA experiments: peripheral-to-memory transfers, double buffering and cache coherency.</p><span class="status">Planned</span></li>
-      <li data-reveal><code>fixmath</code><p>A fixed-point math library for MCUs without an FPU.</p><span class="status">Planned</span></li>
-      <li data-reveal><code>postmortem</code><p>Fault capture for Cortex-M: save HardFault state and read it back after reset.</p><span class="status">Planned</span></li>
-    </ul>
-    <p class="more" style="margin-top:48px"><a href="https://github.com/animeshsrivastava24">More on GitHub ↗</a></p>
-  </div>
-</section>
-<div class="wrap next-wrap">
-  <a class="next" href="experience.html"><span><small>Next · 07</small><strong>Experience</strong></span><span class="go" aria-hidden="true">→</span></a>
-  <footer class="foot page-foot">
-      <span>© 2026 Animesh Srivastava</span>
-      <span>Plain HTML, CSS &amp; JS · GitHub Pages</span>
-      <a href="#top">Back to top ↑</a>
-    </footer>
-</div>
+<main class="pg" id="main">
+<h1 class="ptitle">Projects</h1>
+<p class="pintro">Firmware I build outside work, mostly on STM32 boards. Each one is written up the same way: the problem, what I built, and a blueprint you can rebuild from.</p>
+<div class="rows"><a class="row" href="projects/stm32-bootloader.html"><span class="y">2025</span><div><h3>Custom bootloader for STM32</h3><p>In-field firmware updates over UART, with CRC checks.</p><div class="chips"><span>Embedded C</span><span>STM32</span><span>UART</span><span>CRC</span></div></div><span class="arrow">Read case study</span></a><a class="row" href="projects/evm-firmware.html"><span class="y">2020</span><div><h3>Electronic voting machine firmware</h3><p>Secure vote storage, anti-tamper monitoring and a protected count.</p><div class="chips"><span>FreeRTOS</span><span>STM32</span><span>C</span><span>UART</span><span>I2C</span></div></div><span class="arrow">Read case study</span></a><a class="row" href="projects/predictive-path.html"><span class="y">2018</span><div><h3>Predictive Path Analyzer</h3><p>A green-route optimizer for emergency vehicles. KPIT Sparkle award.</p><div class="chips"><span>Embedded</span><span>Traffic optimization</span></div></div><span class="arrow">Read case study</span></a></div>
+<section class="sec"><h2>On the bench</h2><p class="sub">Planned builds on a Nucleo-H743ZI.</p><div class="rows"><div class="row"><span class="y">Planned</span><div><h3>mini-rtos</h3><p>A small preemptive RTOS kernel: scheduler, context switch and synchronization primitives.</p></div><span></span></div><div class="row"><span class="y">Planned</span><div><h3>slotboot</h3><p>An A/B slot bootloader with image verification and rollback.</p></div><span></span></div><div class="row"><span class="y">Planned</span><div><h3>dmalab</h3><p>DMA experiments: peripheral-to-memory transfers, double buffering and cache coherency.</p></div><span></span></div><div class="row"><span class="y">Planned</span><div><h3>fixmath</h3><p>A fixed-point math library for MCUs without an FPU.</p></div><span></span></div><div class="row"><span class="y">Planned</span><div><h3>postmortem</h3><p>Fault capture for Cortex-M: save HardFault state and read it back after reset.</p></div><span></span></div></div>
+<p class="note" style="margin-top:20px">Work projects at Qualcomm are on the <a class="arrow" href="ai.html">AI projects</a> and <a class="arrow" href="experience.html">Experience</a> pages. Code: <a class="arrow" href="https://github.com/animeshsrivastava24">GitHub</a></p></section>
+<div class="next"><span>Next</span><a href="experience.html">Experience</a></div>
 </main>
+<footer class="ft"><span>© 2026 Animesh Srivastava, Hyderabad, India</span><span class="links"><a href="mailto:animeshshri.nith@gmail.com">animeshshri.nith@gmail.com</a><a href="https://www.linkedin.com/in/animeshsrivastava">LinkedIn</a><a href="https://github.com/animeshsrivastava24">GitHub</a><a href="https://thestackpointer.github.io">The Stack Pointer</a></span></footer>
 <script src="assets/site.js"></script>
 </body>
 </html>
