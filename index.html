@@ -1,171 +1,34 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Animesh Srivastava — Embedded Firmware Engineer</title>
-<meta name="description" content="Embedded firmware engineer building timing-critical RTOS drivers for Snapdragon RF/PHY Layer-1, and the AI agents that debug them.">
-<meta property="og:title" content="Animesh Srivastava — Embedded Firmware Engineer">
-<meta property="og:description" content="Embedded firmware engineer building timing-critical RTOS drivers for Snapdragon RF/PHY Layer-1, and the AI agents that debug them.">
+<title>Animesh Srivastava | Embedded firmware and AI debug agents</title>
+<meta name="description" content="Animesh Srivastava: embedded firmware engineer building RF/PHY Layer-1 drivers for Snapdragon modems and AI agents that debug them.">
+<meta name="theme-color" content="#0F2A2C">
+<meta property="og:title" content="Animesh Srivastava | Embedded firmware and AI debug agents">
+<meta property="og:description" content="Animesh Srivastava: embedded firmware engineer building RF/PHY Layer-1 drivers for Snapdragon modems and AI agents that debug them.">
 <meta property="og:type" content="website">
-<meta name="theme-color" content="#F4EEE1">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='6' fill='%231C1A16'/%3E%3Ctext x='32' y='43' font-family='Georgia,serif' font-size='30' text-anchor='middle' fill='%23F4EEE1'%3EAS%3C/text%3E%3Ccircle cx='51' cy='41' r='3.5' fill='%23C9962E'/%3E%3C/svg%3E">
-<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%230F2A2C'/%3E%3Ccircle cx='11' cy='11' r='3' fill='%23ECF5F3'/%3E%3Ccircle cx='21' cy='21' r='4' fill='%23F2C14E'/%3E%3C/svg%3E">
+<link rel="preload" href="assets/fonts/outfit.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="assets/site.css">
 </head>
-<body>
+<body class="home" data-section="home">
 <a class="skip" href="#main">Skip to content</a>
-<div class="progress" aria-hidden="true"><span></span></div>
-<div class="trace" aria-hidden="true">
-  <svg viewBox="0 0 40 1000" preserveAspectRatio="none"><path id="traceBg"/><path id="traceFg"/></svg>
-  <div class="trace-tip"><i></i><b>00%</b></div>
-</div>
-<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
-<marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#1C1A16"/></marker>
-<marker id="arrR" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#A8352A"/></marker>
-</defs></svg><header class="nav" id="nav">
-  <div class="wrap nav-in">
-    <a class="mark" href="index.html" aria-label="Animesh Srivastava, home">A<span>S</span></a>
-    
-    <div class="nav-right">
-      <a class="btn btn-small" href="contact.html">Contact</a>
-      <button class="menu-btn" aria-expanded="false" aria-controls="menu">All pages</button>
-    </div>
-  </div>
-</header>
-<nav class="menu" id="menu" hidden aria-label="All pages">
-  <div class="menu-grid">
-    <a href="index.html" aria-current="page"><span>00</span>Home</a>
-    <a href="ai-work.html"><svg class="ico" viewBox="0 0 48 48" aria-hidden="true"><rect class="dr" pathLength="1" x="12" y="12" width="24" height="24" rx="2"/><path d="M18 12V7M24 12V7M30 12V7M18 41v-5M24 41v-5M30 41v-5M12 18H7M12 24H7M12 30H7M41 18h-5M41 24h-5M41 30h-5"/><path class="acc" d="M24 17.5l1.8 4.7 4.7 1.8-4.7 1.8L24 30.5l-1.8-4.7-4.7-1.8 4.7-1.8z"/></svg><span>01</span>AI Work</a>
-<a href="agents.html"><svg class="ico" viewBox="0 0 48 48" aria-hidden="true"><path class="dr" pathLength="1" d="M24 14v8M20 29.5L13.5 33M28 29.5L34.5 33"/><circle cx="24" cy="10" r="4"/><circle cx="10" cy="36" r="4"/><circle cx="38" cy="36" r="4"/><circle class="acc" cx="24" cy="26.5" r="5"/></svg><span>02</span>Agents</a>
-<a href="skills.html"><svg class="ico" viewBox="0 0 48 48" aria-hidden="true"><rect x="5" y="15" width="38" height="18" rx="1"/><path d="M14.5 15v18M24 15v18M33.5 15v18"/><rect class="fillacc" x="7.5" y="17.5" width="4.5" height="13"/><rect class="fillacc" x="26.5" y="17.5" width="4.5" height="13"/><path class="dr" pathLength="1" d="M5 40h38"/></svg><span>03</span>Skills</a>
-<a href="mcp.html"><svg class="ico" viewBox="0 0 48 48" aria-hidden="true"><path d="M18 6v9M30 6v9"/><path d="M13 15h22v7a11 11 0 0 1-22 0z"/><path class="dr acc" pathLength="1" d="M24 33v9"/><path class="acc" d="M19 42h10"/></svg><span>04</span>MCP</a>
-<a href="diagrams.html"><svg class="ico" viewBox="0 0 48 48" aria-hidden="true"><rect x="5" y="6" width="15" height="10" rx="1"/><rect x="28" y="6" width="15" height="10" rx="1"/><path class="dr" pathLength="1" d="M12.5 16v6h23v-6M24 22v6"/><path class="acc" d="M24 28l7 7-7 7-7-7z"/></svg><span>05</span>Design Diagrams</a>
-<a href="projects.html"><svg class="ico" viewBox="0 0 48 48" aria-hidden="true"><rect x="6" y="10" width="36" height="28" rx="2"/><rect class="acc" x="19" y="19" width="10" height="10"/><path class="dr" pathLength="1" d="M6 18h6l3 3h4M42 30h-6l-3-3h-4M24 10v9M24 29v9"/><circle cx="11" cy="33" r="1.5"/><circle cx="37" cy="15" r="1.5"/></svg><span>06</span>Projects</a>
-<a href="experience.html"><svg class="ico" viewBox="0 0 48 48" aria-hidden="true"><path class="dr" pathLength="1" d="M12 6v36"/><circle class="fillacc" cx="12" cy="12" r="3.5"/><circle cx="12" cy="24" r="3.5" fill="var(--paper)"/><circle cx="12" cy="36" r="3.5" fill="var(--paper)"/><path d="M20 12h20M20 24h15M20 36h18"/></svg><span>07</span>Experience</a>
-<a href="education.html"><svg class="ico" viewBox="0 0 48 48" aria-hidden="true"><circle cx="24" cy="31" r="10"/><path d="M17 23.5L11 6h8l5 10 5-10h8l-6 17.5"/><path class="acc" d="M24 25.5l1.6 3.3 3.6.5-2.6 2.5.6 3.6L24 33.7l-3.2 1.7.6-3.6-2.6-2.5 3.6-.5z"/></svg><span>08</span>Education & Awards</a>
-<a href="publications.html"><svg class="ico" viewBox="0 0 48 48" aria-hidden="true"><path d="M12 6h18l8 8v28H12z"/><path d="M30 6v8h8"/><path class="acc" d="M17 16h8"/><path class="dr" pathLength="1" d="M17 23h16M17 29h16M17 35h10"/></svg><span>09</span>Publications</a>
-<a href="writing.html"><svg class="ico" viewBox="0 0 48 48" aria-hidden="true"><path d="M24 6l10 16-10 20-10-20z"/><path class="acc" d="M24 24.5V42"/><circle cx="24" cy="22" r="2.5"/><path class="dr" pathLength="1" d="M6 44h36"/></svg><span>10</span>Writing</a>
-<a href="contact.html"><svg class="ico" viewBox="0 0 48 48" aria-hidden="true"><rect x="6" y="12" width="36" height="25" rx="2"/><path class="dr acc" pathLength="1" d="M6 14l18 13 18-13"/></svg><span>11</span>Contact</a>
-  </div>
-</nav>
-<main id="main">
-<section class="home-hero" id="top">
-  <div class="wrap home-grid">
-    <div class="who">
-      <p class="eyebrow"><i></i>Senior Lead Engineer · Qualcomm</p>
-      <h1 class="who-name">Animesh Srivastava<span>.</span></h1>
-      <p class="who-lead"><strong>Embedded firmware engineer.</strong> 5+ years of timing-critical RTOS drivers for Snapdragon RF/PHY Layer-1, and the AI agents that debug them.</p>
-      <ul class="who-meta">
-        <li><span>Based in</span><span>Hyderabad, India</span></li>
-        <li><span>Focus</span><span>RF/PHY Layer-1 firmware</span></li>
-        <li><span>Also</span><span>LangGraph agents · MCP</span></li>
-        <li><span>Education</span><span>NIT Hamirpur · Rank 1</span></li>
-      </ul>
-      <p class="who-links"><a href="https://www.linkedin.com/in/animeshsrivastava">LinkedIn ↗</a><a href="https://github.com/animeshsrivastava24">GitHub ↗</a><a href="contact.html">Email →</a></p>
-    </div>
-    <nav class="tiles-wrap" aria-label="Pages">
-      <p class="tiles-head"><span>Index</span><span>11 pages</span></p>
-      <div class="tiles">
-        <a class="tile" href="ai-work.html">
-          <span class="tile-top"><svg class="ico" viewBox="0 0 48 48" aria-hidden="true"><rect class="dr" pathLength="1" x="12" y="12" width="24" height="24" rx="2"/><path d="M18 12V7M24 12V7M30 12V7M18 41v-5M24 41v-5M30 41v-5M12 18H7M12 24H7M12 30H7M41 18h-5M41 24h-5M41 30h-5"/><path class="acc" d="M24 17.5l1.8 4.7 4.7 1.8-4.7 1.8L24 30.5l-1.8-4.7-4.7-1.8 4.7-1.8z"/></svg><span class="num">01</span></span>
-          <span><span class="lbl">AI Work</span><span class="cap">16× faster debug</span></span>
-          <span class="go" aria-hidden="true">↗</span>
-        </a>
-<a class="tile" href="agents.html">
-          <span class="tile-top"><svg class="ico" viewBox="0 0 48 48" aria-hidden="true"><path class="dr" pathLength="1" d="M24 14v8M20 29.5L13.5 33M28 29.5L34.5 33"/><circle cx="24" cy="10" r="4"/><circle cx="10" cy="36" r="4"/><circle cx="38" cy="36" r="4"/><circle class="acc" cx="24" cy="26.5" r="5"/></svg><span class="num">02</span></span>
-          <span><span class="lbl">Agents</span><span class="cap">3 debug agents</span></span>
-          <span class="go" aria-hidden="true">↗</span>
-        </a>
-<a class="tile" href="skills.html">
-          <span class="tile-top"><svg class="ico" viewBox="0 0 48 48" aria-hidden="true"><rect x="5" y="15" width="38" height="18" rx="1"/><path d="M14.5 15v18M24 15v18M33.5 15v18"/><rect class="fillacc" x="7.5" y="17.5" width="4.5" height="13"/><rect class="fillacc" x="26.5" y="17.5" width="4.5" height="13"/><path class="dr" pathLength="1" d="M5 40h38"/></svg><span class="num">03</span></span>
-          <span><span class="lbl">Skills</span><span class="cap">32-bit register map</span></span>
-          <span class="go" aria-hidden="true">↗</span>
-        </a>
-<a class="tile" href="mcp.html">
-          <span class="tile-top"><svg class="ico" viewBox="0 0 48 48" aria-hidden="true"><path d="M18 6v9M30 6v9"/><path d="M13 15h22v7a11 11 0 0 1-22 0z"/><path class="dr acc" pathLength="1" d="M24 33v9"/><path class="acc" d="M19 42h10"/></svg><span class="num">04</span></span>
-          <span><span class="lbl">MCP</span><span class="cap">2 servers in progress</span></span>
-          <span class="go" aria-hidden="true">↗</span>
-        </a>
-<a class="tile" href="diagrams.html">
-          <span class="tile-top"><svg class="ico" viewBox="0 0 48 48" aria-hidden="true"><rect x="5" y="6" width="15" height="10" rx="1"/><rect x="28" y="6" width="15" height="10" rx="1"/><path class="dr" pathLength="1" d="M12.5 16v6h23v-6M24 22v6"/><path class="acc" d="M24 28l7 7-7 7-7-7z"/></svg><span class="num">05</span></span>
-          <span><span class="lbl">Design Diagrams</span><span class="cap">7 figures</span></span>
-          <span class="go" aria-hidden="true">↗</span>
-        </a>
-<a class="tile" href="projects.html">
-          <span class="tile-top"><svg class="ico" viewBox="0 0 48 48" aria-hidden="true"><rect x="6" y="10" width="36" height="28" rx="2"/><rect class="acc" x="19" y="19" width="10" height="10"/><path class="dr" pathLength="1" d="M6 18h6l3 3h4M42 30h-6l-3-3h-4M24 10v9M24 29v9"/><circle cx="11" cy="33" r="1.5"/><circle cx="37" cy="15" r="1.5"/></svg><span class="num">06</span></span>
-          <span><span class="lbl">Projects</span><span class="cap">3 built · 5 planned</span></span>
-          <span class="go" aria-hidden="true">↗</span>
-        </a>
-<a class="tile" href="experience.html">
-          <span class="tile-top"><svg class="ico" viewBox="0 0 48 48" aria-hidden="true"><path class="dr" pathLength="1" d="M12 6v36"/><circle class="fillacc" cx="12" cy="12" r="3.5"/><circle cx="12" cy="24" r="3.5" fill="var(--paper)"/><circle cx="12" cy="36" r="3.5" fill="var(--paper)"/><path d="M20 12h20M20 24h15M20 36h18"/></svg><span class="num">07</span></span>
-          <span><span class="lbl">Experience</span><span class="cap">Qualcomm since 2020</span></span>
-          <span class="go" aria-hidden="true">↗</span>
-        </a>
-<a class="tile" href="education.html">
-          <span class="tile-top"><svg class="ico" viewBox="0 0 48 48" aria-hidden="true"><circle cx="24" cy="31" r="10"/><path d="M17 23.5L11 6h8l5 10 5-10h8l-6 17.5"/><path class="acc" d="M24 25.5l1.6 3.3 3.6.5-2.6 2.5.6 3.6L24 33.7l-3.2 1.7.6-3.6-2.6-2.5 3.6-.5z"/></svg><span class="num">08</span></span>
-          <span><span class="lbl">Education & Awards</span><span class="cap">Rank 1 · 2 gold medals</span></span>
-          <span class="go" aria-hidden="true">↗</span>
-        </a>
-<a class="tile" href="publications.html">
-          <span class="tile-top"><svg class="ico" viewBox="0 0 48 48" aria-hidden="true"><path d="M12 6h18l8 8v28H12z"/><path d="M30 6v8h8"/><path class="acc" d="M17 16h8"/><path class="dr" pathLength="1" d="M17 23h16M17 29h16M17 35h10"/></svg><span class="num">09</span></span>
-          <span><span class="lbl">Publications</span><span class="cap">4 papers</span></span>
-          <span class="go" aria-hidden="true">↗</span>
-        </a>
-<a class="tile" href="writing.html">
-          <span class="tile-top"><svg class="ico" viewBox="0 0 48 48" aria-hidden="true"><path d="M24 6l10 16-10 20-10-20z"/><path class="acc" d="M24 24.5V42"/><circle cx="24" cy="22" r="2.5"/><path class="dr" pathLength="1" d="M6 44h36"/></svg><span class="num">10</span></span>
-          <span><span class="lbl">Writing</span><span class="cap">@thestackpointer</span></span>
-          <span class="go" aria-hidden="true">↗</span>
-        </a>
-<a class="tile" href="contact.html">
-          <span class="tile-top"><svg class="ico" viewBox="0 0 48 48" aria-hidden="true"><rect x="6" y="12" width="36" height="25" rx="2"/><path class="dr acc" pathLength="1" d="M6 14l18 13 18-13"/></svg><span class="num">11</span></span>
-          <span><span class="lbl">Contact</span><span class="cap">Email · LinkedIn · GitHub</span></span>
-          <span class="go" aria-hidden="true">↗</span>
-        </a>
-<div class="tile signal" aria-hidden="true">
-          <svg data-wave viewBox="0 0 300 56" preserveAspectRatio="none"><path class="wI"/></svg>
-          <p><b>Signal locked.</b>Pick a page to start.</p>
-        </div>
-      </div>
-    </nav>
-  </div>
-  <svg class="home-wave" data-wave viewBox="0 0 1200 110" preserveAspectRatio="none" aria-hidden="true">
-    <line x1="0" y1="55" x2="1200" y2="55"/><path class="wQ"/><path class="wI"/>
-  </svg>
-  <p class="home-cue"><span class="wrap" style="display:block">Scroll for the summary ↓</span></p>
-</section>
-
-<section class="impact" aria-label="Impact in numbers">
-  <div class="wrap impact-grid" data-stagger>
-    <div class="stat" data-reveal><p class="stat-num"><span data-count="16">16</span>×</p><p class="stat-label">faster RFFE conflict debug with an agentic RAG debugger</p></div>
-    <div class="stat" data-reveal><p class="stat-num">3–<span data-count="4">4</span>×</p><p class="stat-label">faster root-cause analysis of modem crashes</p></div>
-    <div class="stat" data-reveal><p class="stat-num"><span data-count="25">25</span>%</p><p class="stat-label">lower transceiver latency after re-architecting RTOS scheduling</p></div>
-    <div class="stat" data-reveal><p class="stat-num">2–<span data-count="4">4</span><small>dB</small></p><p class="stat-label">better in-band receiver sensitivity</p></div>
-    <div class="stat" data-reveal><p class="stat-num"><span data-count="30">30</span>%</p><p class="stat-label">smaller static memory footprint across hardware tiers</p></div>
-  </div>
-</section>
-
-<section class="section about" id="about">
-  <div class="wrap">
-    <p class="kicker"><span>00</span>Summary</p>
-    <p class="scrub" data-scrub>I build timing-critical, RTOS-based RF/PHY Layer-1 drivers for Snapdragon modem SoCs, across flagship, mid-tier and entry-tier platforms. My work runs from pre-silicon validation through post-silicon bring-up and field debug. I also build the <span class="hl">AI agents that debug that firmware</span>, with LangGraph, agentic RAG and multi-agent systems that automate root-cause analysis.</p>
-    <div class="about-meta" data-stagger>
-      <div data-reveal><h3>Pre-silicon</h3><p>A subframe-timed L1 emulation harness that reproduces field scheduling behaviour (~90% match) and catches real-time regressions before silicon.</p></div>
-      <div data-reveal><h3>Post-silicon</h3><p>Memory-mapped RFFE/SDR register drivers and low-level PHY control paths, including the bring-up of LTE 450 MHz support.</p></div>
-      <div data-reveal><h3>In the field</h3><p>OEM issues root-caused from QXDM/QCAT logs down to register state and timing, then fixed with targeted driver changes.</p></div>
-    </div>
-  </div>
-</section>
-
-<div class="wrap">
-  <a class="next" href="ai-work.html"><span><small>Start · 01</small><strong>AI Work</strong></span><span class="go" aria-hidden="true">→</span></a>
-  <footer class="foot page-foot">
-      <span>© 2026 Animesh Srivastava</span>
-      <span>Plain HTML, CSS &amp; JS · GitHub Pages</span>
-      <a href="#top">Back to top ↑</a>
-    </footer>
-</div>
+<header class="top"><a class="name" href="index.html">Animesh Srivastava</a><nav class="links" aria-label="Contact"><a href="https://thestackpointer.github.io" class="hide-s">Writing</a><a href="https://github.com/animeshsrivastava24" class="hide-s">GitHub</a><a href="https://www.linkedin.com/in/animeshsrivastava">LinkedIn</a><a class="btn" href="mailto:animeshshri.nith@gmail.com">Email me</a></nav></header>
+<main class="hm" id="main">
+  <section class="intro">
+    <div class="who"><div class="ph"><div class="ph-in"><span class="mono" aria-hidden="true">AS</span><!-- To add a photo: save it as assets/photo.jpg and put <img src="assets/photo.jpg" alt="Animesh Srivastava"> here --></div></div><p><b>Animesh Srivastava</b>Senior Lead Engineer, Qualcomm<br>Double Gold Medalist, NIT Hamirpur</p></div>
+    <h1>Signals into working radios.</h1>
+    <p class="lede">I build RF/PHY Layer-1 firmware for Snapdragon modems, and AI agents that debug it. Each point on the map opens a part of my work.</p>
+    <div class="ctas"><a class="solid" href="projects.html">See projects</a><a href="experience.html">View experience</a></div>
+  </section>
+  <nav class="plot" id="plot" aria-label="Sections">
+    <svg class="grid" viewBox="0 0 690 690" aria-hidden="true"><g stroke="#1C3D40" stroke-dasharray="2 7"><line x1="185" x2="185" y1="30" y2="660"/><line x1="505" x2="505" y1="30" y2="660"/><line y1="185" y2="185" x1="30" x2="660"/><line y1="505" y2="505" x1="30" x2="660"/></g><line x1="345" x2="345" y1="20" y2="670" stroke="#2A4E52"/><line x1="20" x2="670" y1="345" y2="345" stroke="#2A4E52"/></svg>
+    <span class="ax" style="left:97.5%;top:48.4%" aria-hidden="true">I</span><span class="ax" style="left:51.6%;top:.5%" aria-hidden="true">Q</span>
+  </nav>
 </main>
+<script type="application/json" id="points">[{"key": "awards", "title": "Awards", "sub": "Gold Medals, IETE, Qualcomm", "pv": ["Latest", "S.K. Mitra Memorial Award", "IETE Best Research Paper, 2023."]}, {"key": "experience", "title": "Experience", "sub": "5+ years at Qualcomm", "pv": ["Now", "Senior Lead Engineer, Qualcomm", "RF/PHY Layer-1 drivers for Snapdragon modem SoCs."]}, {"key": "projects", "title": "Projects", "sub": "Problem, solution, blueprint", "pv": ["Latest build", "Custom bootloader for STM32", "In-field firmware updates over UART, with CRC checks."]}, {"key": "learning", "title": "Learning paths", "sub": "Embedded, bottom-up", "pv": ["Start here", "Embedded systems, bottom-up", "From GPIO internals to the Cortex-M boot chain."]}, {"key": "ai", "title": "AI projects", "sub": "Agents that debug firmware", "pv": ["Biggest win", "RFFE conflict debugger", "An agentic RAG system that made this debug 16\u00d7 faster."]}, {"key": "publications", "title": "Publications", "sub": "4 papers, IETE and IEEE", "pv": ["Most cited", "Five-input majority gate in QCA", "IETE Technical Review, 2022. Cited 7 times."]}]</script>
 <script src="assets/site.js"></script>
 </body>
 </html>
