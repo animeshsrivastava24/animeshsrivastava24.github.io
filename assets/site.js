@@ -132,5 +132,26 @@
     }
   }
   window.__buildPlot = build;
+
+  /* Ambient twinkle: plain dots sparkle on their own, one at a time, at random.
+     Pauses while the tab is hidden; off when reduced motion is requested. */
+  function twinkle() {
+    if (reduce) return;
+    var timer = null;
+    function next() {
+      timer = setTimeout(function () {
+        if (!document.hidden && document.body.classList.contains("settled")) {
+          var dots = plot.querySelectorAll(".dot:not(.hov)");
+          if (dots.length) {
+            var d = dots[Math.floor(Math.random() * dots.length)];
+            void d.offsetWidth; d.classList.add("hov");
+          }
+        }
+        next();
+      }, 500 + Math.random() * 900);
+    }
+    next();
+  }
+  twinkle();
   build(false);
 })();
