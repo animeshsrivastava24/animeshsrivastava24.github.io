@@ -9,7 +9,8 @@
     projects:     { x: 1, y: 1, href: "projects.html" },
     learning:     { x: 0, y: 2, href: "learning.html" },
     ai:           { x: 2, y: 2, href: "ai.html" },
-    publications: { x: 3, y: 3, href: "publications.html" }
+    publications: { x: 3, y: 3, href: "publications.html" },
+    gallery:      { x: 1, y: 3, href: "gallery.html" }
   };
   var root = document.documentElement;
   var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
@@ -98,11 +99,11 @@
       el.style.setProperty("--dy", (Math.sin(a) * r).toFixed(1) + "px");
       el.style.setProperty("--d", (Math.random() * 0.25).toFixed(2) + "s");
       if (d) {
-        el.className = "pt" + (i === 3 ? " left" : "");
+        el.className = "pt" + (i === 3 ? " left" : "") + (j === 3 ? " up" : "");
         el.href = SECTIONS[d.key].href;
         el.dataset.key = d.key;
         el.innerHTML = '<span class="core" aria-hidden="true"><b></b><span class="ring"></span><span class="ring"></span><span class="ring"></span>' +
-          '<span class="pv"><small>' + d.pv[0] + "</small><strong>" + d.pv[1] + "</strong><span>" + d.pv[2] + "</span><em>Open " + d.title.toLowerCase() + "</em></span></span>" +
+          '<span class="pv">' + (d.img ? '<img src="' + d.img + '" alt="" loading="lazy">' : '') + '<small>' + d.pv[0] + "</small><strong>" + d.pv[1] + "</strong><span>" + d.pv[2] + "</span><em>Open " + d.title.toLowerCase() + "</em></span></span>" +
           "<h2>" + d.title + "</h2><p>" + d.sub + "</p>";
         el.setAttribute("aria-label", d.title + ": " + d.sub);
       } else {
