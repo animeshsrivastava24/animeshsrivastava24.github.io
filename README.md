@@ -30,7 +30,7 @@ Old page URLs (`agents.html`, `ai-work.html`, `mcp.html`, `skills.html`, `diagra
 
 - Each page's content is plain HTML in its own file.
 - Home map labels and hover previews: the JSON block with `id="points"` near the end of `index.html`.
-- Photo: save a square portrait as `assets/photo.jpg` and add `<img src="assets/photo.jpg" alt="Animesh Srivastava">` inside `.ph-in` in `index.html` (there is a comment marking the spot). The site tints it to match the palette.
+- Photo: `assets/photo.jpg` (square, 480×480, metadata stripped). Replace the file to change it; the site tints it to match the palette.
 
 ## Motion
 
