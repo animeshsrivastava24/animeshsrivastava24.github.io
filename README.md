@@ -19,6 +19,7 @@ The home page is a signal constellation: six of its 16 points are the site's sec
 | `learning.html` | Learning paths |
 | `awards.html` | Awards and selections |
 | `publications.html` | Papers with DOI links |
+| `gallery.html` | Floating photo gallery; click a photo to open it with its line (`assets/gallery.js`, photos in `assets/gallery/`) |
 | `404.html` | Not-found page |
 | `assets/site.css` | All styles. Colours and fonts are CSS variables at the top |
 | `assets/site.js` | Constellation, hover effects and page transitions |
